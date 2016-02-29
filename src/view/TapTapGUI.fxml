@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.geometry.Point3D?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -14,21 +17,21 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <BorderPane prefHeight="200.0" prefWidth="200.0">
+      <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #3A3031;">
          <top>
-            <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <ToolBar prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #333;" BorderPane.alignment="CENTER">
               <items>
-                <Button mnemonicParsing="false" text="Pause" />
+                <Button mnemonicParsing="false" style="-fx-background-color: #D40E52;" text="Pause" textFill="WHITE" />
                   <Pane prefHeight="28.0" prefWidth="376.0">
                      <children>
-                        <Text layoutX="52.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score: 1000 points" textAlignment="CENTER" wrappingWidth="323.21875" />
+                        <Text fill="WHITE" layoutX="52.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score: 1000 points" textAlignment="CENTER" wrappingWidth="323.21875" />
                      </children>
                   </Pane>
                   <Slider prefHeight="16.0" prefWidth="140.0" />
@@ -38,35 +41,96 @@
          <bottom>
             <VBox prefHeight="40.0" prefWidth="574.0" BorderPane.alignment="CENTER">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Progress: 26%" textAlignment="CENTER" wrappingWidth="140.68310546875" />
-                  <ProgressBar prefHeight="16.0" prefWidth="140.0" progress="0.34" />
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Progress: 26%" textAlignment="CENTER" wrappingWidth="140.68310546875" />
+                  <ProgressBar prefHeight="16.0" prefWidth="140.0" progress="0.34">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin></ProgressBar>
                </children>
                <BorderPane.margin>
                   <Insets left="10.0" />
                </BorderPane.margin>
             </VBox>
          </bottom>
-      </BorderPane>
-      <AnchorPane opacity="0.84" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #000;" StackPane.alignment="CENTER">
-         <children>
-            <TextFlow layoutX="51.0" layoutY="36.0" prefHeight="68.0" prefWidth="414.0" textAlignment="JUSTIFY">
+         <center>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label text="Keep track of your score." textFill="#9e9b9b" />
-                  <Label text="Pause or play the song by clicking the Pause button or hitting the [spacebar] key." textFill="#9e9b9b" />
-                  <Label text="Adjust the volume." textFill="#9e9b9b" />
-                  <Label text="Keep track of how close you are to completing the song." textFill="#9e9b9b" />
+                  <HBox alignment="CENTER" layoutX="66.0" layoutY="255.0" prefHeight="45.0" prefWidth="469.0">
+                     <children>
+                        <Circle fill="#0298d3" radius="18.0" scaleZ="0.0" stroke="WHITE">
+                           <HBox.margin>
+                              <Insets right="50.0" />
+                           </HBox.margin>
+                           <effect>
+                              <InnerShadow color="#fffdfd" />
+                           </effect>
+                           <rotationAxis>
+                              <Point3D />
+                           </rotationAxis>
+                        </Circle>
+                        <Circle fill="#d40e52" radius="18.0" scaleZ="0.0" stroke="WHITE">
+                           <HBox.margin>
+                              <Insets right="50.0" />
+                           </HBox.margin>
+                           <effect>
+                              <InnerShadow color="#fffdfd" />
+                           </effect>
+                           <rotationAxis>
+                              <Point3D />
+                           </rotationAxis>
+                        </Circle>
+                        <Circle fill="#19bc00" radius="18.0" scaleZ="0.0" stroke="WHITE">
+                           <HBox.margin>
+                              <Insets right="50.0" />
+                           </HBox.margin>
+                           <effect>
+                              <InnerShadow color="#fffdfd" />
+                           </effect>
+                           <rotationAxis>
+                              <Point3D />
+                           </rotationAxis>
+                        </Circle>
+                        <Circle fill="#fce014" radius="18.0" scaleZ="0.0" stroke="WHITE">
+                           <effect>
+                              <InnerShadow color="#fffdfd" />
+                           </effect>
+                           <rotationAxis>
+                              <Point3D />
+                           </rotationAxis>
+                        </Circle>
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+         </center>
+      </BorderPane>
+      <AnchorPane opacity="0.85" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #000;" visible="false" StackPane.alignment="CENTER">
+         <children>
+            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" />
+            <HBox alignment="CENTER" layoutX="210.0" layoutY="226.0" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button mnemonicParsing="false" style="-fx-background-color: #D40E52;" text="Back" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" style="-fx-background-color: #D40E52;" text="Start Game!" textFill="WHITE" />
+               </children>
+            </HBox>
+            <ChoiceBox layoutX="317.0" layoutY="87.0" prefWidth="150.0" style="-fx-background-color: #0298D3;" />
+            <ChoiceBox layoutX="160.0" layoutY="87.0" prefWidth="150.0" style="-fx-background-color: #0298D3;" />
+         </children>
+      </AnchorPane>
+      <AnchorPane opacity="0.85" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #000;" visible="false" StackPane.alignment="CENTER">
+         <children>
+            <TextFlow layoutX="36.0" layoutY="128.0" prefHeight="186.0" prefWidth="531.0" textAlignment="JUSTIFY">
+               <children>
+                  <Label alignment="CENTER" prefHeight="0.0" prefWidth="505.0" text="Adjust the volume." textFill="#9e9b9b" />
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="516.0" text="Keep track of your score." textFill="#9e9b9b" />
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="515.0" text="Keep track of how close you are to completing the song." textFill="#9e9b9b" />
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="531.0" text="Pause or play the song by clicking the Pause button or hitting the [spacebar] key." textFill="#9e9b9b" />
                </children>
             </TextFlow>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="200.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../Screen%20Shot%202016-02-28%20at%206.16.24%20PM.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="69.0" fitWidth="225.0" layoutX="188.0" layoutY="234.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../Screen%20Shot%202016-02-28%20at%206.31.55%20PM.png" />
-               </image>
-            </ImageView>
             <HBox alignment="CENTER" layoutX="200.0" layoutY="297.0" prefHeight="100.0" prefWidth="200.0">
                <children>
                   <Button mnemonicParsing="false" style="-fx-background-color: #D40E52;" text="Skip tutorial" textFill="WHITE">
@@ -79,7 +143,7 @@
             </HBox>
          </children>
       </AnchorPane>
-      <AnchorPane opacity="0.79" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #000;" visible="false">
+      <AnchorPane opacity="0.85" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #000;">
          <children>
             <TextFlow layoutX="147.0" layoutY="36.0" prefHeight="31.0" prefWidth="318.0" textAlignment="JUSTIFY">
                <children>
@@ -91,16 +155,6 @@
                   <Label text="Use your keyboard to play to the beat of the song." textFill="#9e9b9b" />
                </children>
             </TextFlow>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="200.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../Screen%20Shot%202016-02-28%20at%206.16.24%20PM.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="69.0" fitWidth="225.0" layoutX="188.0" layoutY="234.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../Screen%20Shot%202016-02-28%20at%206.31.55%20PM.png" />
-               </image>
-            </ImageView>
             <HBox alignment="CENTER" layoutX="200.0" layoutY="297.0" prefHeight="100.0" prefWidth="200.0">
                <children>
                   <Button mnemonicParsing="false" style="-fx-background-color: #D40E52;" text="Skip tutorial" textFill="WHITE">
@@ -111,6 +165,16 @@
                   <Button mnemonicParsing="false" style="-fx-background-color: #D40E52;" text="Next" textFill="WHITE" />
                </children>
             </HBox>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="206.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Screen%20Shot%202016-02-28%20at%206.16.24%20PM.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="206.0" layoutY="248.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Screen%20Shot%202016-02-28%20at%206.31.55%20PM.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </children>
