@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane opacity="0.85" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #000;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane opacity="0.85" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #000;" visible="false" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TextFlow layoutX="36.0" layoutY="128.0" prefHeight="186.0" prefWidth="531.0" textAlignment="JUSTIFY">
          <children>
@@ -19,7 +19,7 @@
       </TextFlow>
       <HBox alignment="CENTER" layoutX="200.0" layoutY="297.0" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button mnemonicParsing="false" style="-fx-background-color: #D40E52;" text="Skip tutorial" textFill="WHITE">
+            <Button fx:id="skipButton" mnemonicParsing="false" style="-fx-background-color: #D40E52;" text="Skip tutorial" textFill="WHITE">
                <HBox.margin>
                   <Insets right="5.0" />
                </HBox.margin>
