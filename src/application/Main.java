@@ -26,6 +26,12 @@ public class Main extends Application {
 	@FXML
 	private Button nextButton;
 
+	@FXML
+	private Button nextButton2;
+
+	@FXML
+	private Button backButton2;
+
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -61,6 +67,7 @@ public class Main extends Application {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
 	}
 
 

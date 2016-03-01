@@ -13,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class TutorialController implements Initializable {
@@ -86,8 +87,8 @@ public class TutorialController implements Initializable {
 
 	private void loadSettings() {
 		try {
-			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/settings_screen.fxml"));
-			AnchorPane settingsScreen = (AnchorPane) loader.load();
+			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/main_screen.fxml"));
+			BorderPane settingsScreen = (BorderPane) loader.load();
 			Stage currStage = getCurrentStage(skipButton);
 
 			if (!settingsScreen.isVisible()) {
