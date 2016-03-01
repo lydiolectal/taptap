@@ -22,12 +22,12 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button mnemonicParsing="false" style="-fx-background-color: #D40E52;" text="Back" textFill="WHITE">
+                  <Button fx:id="backButton" mnemonicParsing="false" style="-fx-background-color: #D40E52;" text="Back" textFill="WHITE">
                      <HBox.margin>
                         <Insets right="5.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" style="-fx-background-color: #D40E52;" text="Start Game!" textFill="WHITE" />
+                  <Button fx:id="startButton" mnemonicParsing="false" style="-fx-background-color: #D40E52;" text="Start Game!" textFill="WHITE" />
                </children>
             </HBox>
          </children>

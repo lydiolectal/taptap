@@ -27,15 +27,6 @@ public class Main extends Application {
 	@FXML
 	private Button nextButton;
 
-	private void addButtons(){
-		skipButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("SKIPPED!");
-            }
-        });
-	}
-
 	@Override
 	public void start(Stage primaryStage) {
 		try {

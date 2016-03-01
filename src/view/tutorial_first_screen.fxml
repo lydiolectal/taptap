@@ -44,7 +44,7 @@
             </VBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
                <children>
-                  <Button mnemonicParsing="false" style="-fx-background-color: #D40E52;" text="Skip tutorial" textFill="WHITE">
+                  <Button fx:id="skipButton" mnemonicParsing="false" style="-fx-background-color: #D40E52;" text="Skip tutorial" textFill="WHITE">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>

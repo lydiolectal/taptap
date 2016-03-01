@@ -19,12 +19,12 @@
       </TextFlow>
       <HBox alignment="CENTER" layoutX="200.0" layoutY="297.0" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button fx:id="skipButton" mnemonicParsing="false" style="-fx-background-color: #D40E52;" text="Skip tutorial" textFill="WHITE">
+            <Button fx:id="backButton" mnemonicParsing="false" style="-fx-background-color: #D40E52;" text="Back" textFill="WHITE">
                <HBox.margin>
                   <Insets right="5.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" style="-fx-background-color: #D40E52;" text="Next" textFill="WHITE" />
+            <Button fx:id="nextButton2" mnemonicParsing="false" style="-fx-background-color: #D40E52;" text="Next" textFill="WHITE" />
          </children>
       </HBox>
    </children>
