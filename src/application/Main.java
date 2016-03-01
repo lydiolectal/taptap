@@ -1,9 +1,13 @@
 package application;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -20,6 +24,9 @@ public class Main extends Application {
 	private StackPane rootLayout;
 	private Button skipButton;
 
+	@FXML
+	private Button nextButton;
+
 	private void addButtons(){
 		skipButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -29,14 +36,12 @@ public class Main extends Application {
         });
 	}
 
-
 	@Override
 	public void start(Stage primaryStage) {
 		try {
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/base_screen.fxml"));
 			rootLayout = (StackPane) loader.load();
 			Scene baseScene = new Scene(rootLayout);
-
 
 			//mainScene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(baseScene);
@@ -59,7 +64,6 @@ public class Main extends Application {
 
 	// Display first tutorial overlay scene
 	private void beginTutorial() {
-
 		try {
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/tutorial_first_screen.fxml"));
 			AnchorPane mainScreen = (AnchorPane) loader.load();
@@ -67,8 +71,6 @@ public class Main extends Application {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-
 	}
 
 
