@@ -1,3 +1,7 @@
+/*
+* Lydia Ding, Sarah Leong-Fern, Lucy Lu, Nayely Martinez
+* This is the controller for tutorials
+*/
 package application;
 
 import java.io.IOException;
@@ -52,7 +56,6 @@ public class TutorialController implements Initializable {
             	try {
 					Parent root = (Parent)fxmlLoader.load();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
             	SettingsController controller = fxmlLoader.<SettingsController>getController();
