@@ -61,8 +61,9 @@ public class Main extends Application {
 	private void beginTutorial() {
 
 		try {
-			StackPane main = (StackPane) FXMLLoader.load(getClass().getResource("/view/tutorial_first_screen.fxml"));
-			rootLayout.getChildren().get(0).setVisible(true);
+			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/tutorial_first_screen.fxml"));
+			AnchorPane mainScreen = (AnchorPane) loader.load();
+			rootLayout.getChildren().setAll(mainScreen);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
