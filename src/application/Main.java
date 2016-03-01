@@ -1,9 +1,12 @@
+/*
+* Lydia Ding, Sarah Leong-Fern, Lucy Lu, Nayely Martinez
+* This program deal with the scene when the program first launches
+ */
 package application;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,18 +26,16 @@ public class Main extends Application {
 	private Stage primaryStage;
 	private StackPane rootLayout;
 	private Button skipButton;
-
 	@FXML
 	private Button nextButton;
 
+	//Set the stack pane as the base pane
 	@Override
 	public void start(Stage primaryStage) {
 		try {
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/base_screen.fxml"));
 			rootLayout = (StackPane) loader.load();
 			Scene baseScene = new Scene(rootLayout);
-
-			//mainScene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(baseScene);
 			primaryStage.setTitle("Tap Tap Revolution");
 			primaryStage.show();
@@ -64,7 +65,7 @@ public class Main extends Application {
 		}
 	}
 
-
+	// This is the main method
 	public static void main(String[] args) {
 		launch(args);
 	}
