@@ -53,7 +53,8 @@ public class Main extends Application {
 		return primaryStage;
 	}
 
-	// Display first tutorial overlay scene
+	/* Display first tutorial overlay scene
+	*/
 	private void beginTutorial() {
 		try {
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/tutorial_first_screen.fxml"));
