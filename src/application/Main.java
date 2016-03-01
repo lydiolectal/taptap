@@ -22,7 +22,6 @@ public class Main extends Application {
 
 	private Stage primaryStage;
 	private StackPane rootLayout;
-	private Button skipButton;
 
 	@FXML
 	private Button nextButton;

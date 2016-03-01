@@ -48,16 +48,9 @@ public class TutorialController implements Initializable {
         skipButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-            	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/settings_screen.fxml"));
-            	try {
-					Parent root = (Parent)fxmlLoader.load();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-            	SettingsController controller = fxmlLoader.<SettingsController>getController();
-            	controller.loadSettings(skipButton);
+            	loadSettings();
             }
+
         });
 	}
 
@@ -75,14 +68,33 @@ public class TutorialController implements Initializable {
 	protected void loadTutorial2() {
 		try {
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/tutorial_second_screen.fxml"));
-			AnchorPane tutorialScreen = (AnchorPane) loader.load();
+			AnchorPane tutorialScreen2 = (AnchorPane) loader.load();
 			Stage currStage = getCurrentStage(nextButton);
 
-			if (!tutorialScreen.isVisible()) {
-				tutorialScreen.setVisible(true);
+			if (!tutorialScreen2.isVisible()) {
+				tutorialScreen2.setVisible(true);
 			}
 			// Replace with new scene
-			Scene scene = new Scene(tutorialScreen);
+			Scene scene = new Scene(tutorialScreen2);
+			currStage.setScene(scene);
+			currStage.show();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void loadSettings() {
+		try {
+			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/settings_screen.fxml"));
+			AnchorPane settingsScreen = (AnchorPane) loader.load();
+			Stage currStage = getCurrentStage(skipButton);
+
+			if (!settingsScreen.isVisible()) {
+				settingsScreen.setVisible(true);
+			}
+			// Replace with new scene
+			Scene scene = new Scene(settingsScreen);
 			currStage.setScene(scene);
 			currStage.show();
 
