@@ -1,3 +1,5 @@
+<!--This is the main page, which includes a pause button for the music, a volume control for the music, a progress bar to show how far along the person is in their song, and four circles that will eventually have animation to show when the user has hit one of the four keys-->
+
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
