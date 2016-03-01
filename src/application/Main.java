@@ -1,6 +1,6 @@
 /*
 * Lydia Ding, Sarah Leong-Fern, Lucy Lu, Nayely Martinez
-* This program deal with the scene when the program first launches
+* This program deals with the scene when the program first launches
  */
 package application;
 
