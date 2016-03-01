@@ -1,3 +1,5 @@
+<!--This is the first screen that appears for beginners, a tutorial screen. It has a somewhat transparent background (showing the main page in the back) and text telling the users about how to play. The user can choose one of two buttons: skip, which takes the user straight into selecting a song, and next, which takes the user to the second tutorial screen-->
+
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
