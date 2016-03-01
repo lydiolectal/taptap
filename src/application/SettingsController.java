@@ -1,9 +1,12 @@
+/*
+*Lydia Ding, Sarah Leong-Fern, Lucy Lu, Nayely Martinez
+* This is the controller for settings
+*/
 package application;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
