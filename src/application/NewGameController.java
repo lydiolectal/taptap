@@ -44,8 +44,8 @@ public class NewGameController implements Initializable {
 
 		try {
 			// Replace with new AnchorPane scene on current stage
-			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/tutorial_first_screen.fxml"));
-			AnchorPane screen = (AnchorPane) loader.load();
+			FXMLLoader tut_first_loader = new FXMLLoader(Main.class.getResource("/view/tutorial_second_screen.fxml"));
+			AnchorPane screen = (AnchorPane) tut_first_loader.load();
 			Scene scene = new Scene(screen);
 			stage.setScene(scene);
 			stage.setTitle("Tap Tap Revolution");

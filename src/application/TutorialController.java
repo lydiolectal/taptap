@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class TutorialController implements Initializable {
@@ -66,9 +67,10 @@ public class TutorialController implements Initializable {
 	 */
 	protected static void loadTutorial(Button button) {
 		try {
-			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/tutorial_first_screen.fxml"));
+			//FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/tutorial_first_screen.fxml"));
 			Stage currStage = getCurrentStage(button);
-			AnchorPane tutorialScreen2 = (AnchorPane) loader.load();
+			//AnchorPane tutorialScreen2 = (AnchorPane) loader.load();
+			Pane tutorialScreen2 = (Pane) FXMLLoader.load(Main.class.getResource("/view/tutorial_second_screen.fxml"));
 
 			if (!tutorialScreen2.isVisible()) {
 				tutorialScreen2.setVisible(true);

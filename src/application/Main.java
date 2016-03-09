@@ -8,6 +8,7 @@ import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.scene.Scene;
@@ -29,6 +30,7 @@ public class Main extends Application {
 			// Load game screen
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/new_game_screen.fxml"));
 			AnchorPane screen = (AnchorPane) loader.load();
+
 			Scene scene = new Scene(screen);
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Tap Tap Revolution");
