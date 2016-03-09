@@ -7,6 +7,6 @@
 		<fx:include source="play_screen.fxml" fx:id="play_screen"/>
 		<fx:include source="tutorial_first_screen.fxml" fx:id="tutorial_first_screen" />
 		<fx:include source="tutorial_second_screen.fxml" fx:id="tutorial_second_screen"  />
-		<fx:include source="settings_screen.fxml" fx:id="settings_screen" />
+		<fx:include source="new_game_screen.fxml" fx:id="new_game_screen" />
 	</children>
 </StackPane>

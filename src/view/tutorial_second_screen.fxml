@@ -24,7 +24,7 @@
                   <Insets right="5.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="nextButton2" mnemonicParsing="false" style="-fx-background-color: #D40E52;" text="Next" textFill="WHITE" />
+            <Button fx:id="newGameButton" mnemonicParsing="false" style="-fx-background-color: #D40E52;" text="Begin New Game" textFill="WHITE" />
          </children>
       </HBox>
    </children>

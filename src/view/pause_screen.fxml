@@ -18,8 +18,8 @@
          <children>
             <VBox alignment="CENTER" layoutX="248.0" layoutY="56.0" prefHeight="200.0" prefWidth="128.0" spacing="10.0">
                <children>
-                  <Button fx:id="skipButton" mnemonicParsing="false" style="-fx-background-color: #D40E52;" text="Resume" textFill="WHITE" />
-                  <Button fx:id="skipButton1" mnemonicParsing="false" style="-fx-background-color: #D40E52;" text="New Game" textFill="WHITE" />
+                  <Button fx:id="resumeGameButton" mnemonicParsing="false" style="-fx-background-color: #D40E52;" text="Resume" textFill="WHITE" />
+                  <Button fx:id="newGameButton" mnemonicParsing="false" style="-fx-background-color: #D40E52;" text="New Game" textFill="WHITE" />
                </children>
             </VBox>
             <HBox alignment="CENTER" layoutX="78.0" layoutY="247.0" prefHeight="45.0" prefWidth="469.0">

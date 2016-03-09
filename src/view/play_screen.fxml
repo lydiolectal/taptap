@@ -19,7 +19,7 @@
    <top>
       <ToolBar prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #333;" BorderPane.alignment="CENTER">
          <items>
-            <Button mnemonicParsing="false" style="-fx-background-color: #D40E52;" text="Pause" textFill="WHITE" />
+            <Button fx:id="pauseButton" mnemonicParsing="false" style="-fx-background-color: #D40E52;" text="Pause" textFill="WHITE" />
             <Pane prefHeight="28.0" prefWidth="376.0">
                <children>
                   <Text fill="WHITE" layoutX="52.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score: 1000 points" textAlignment="CENTER" wrappingWidth="323.21875" />
