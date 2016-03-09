@@ -1,3 +1,5 @@
+<!--This is just the stack pane that everything else builds off of. It does nothing except exist so that the others can layer on top-->
+
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.layout.StackPane?>

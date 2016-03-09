@@ -1,3 +1,5 @@
+<!--This is the Settings page, which has a back button so the user can return to their game in case they got to the settings page by pausing it,  plus options for the user to start a new game instead. Its background is slightly transparent, so that the main page can show through a little underneaths-->
+
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
