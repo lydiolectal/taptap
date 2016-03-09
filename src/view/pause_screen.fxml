@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Point3D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Reflection?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #3A3031;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #333;" BorderPane.alignment="CENTER">
+         <children>
+            <VBox alignment="CENTER" layoutX="248.0" layoutY="56.0" prefHeight="200.0" prefWidth="128.0" spacing="10.0">
+               <children>
+                  <Button fx:id="skipButton" mnemonicParsing="false" style="-fx-background-color: #D40E52;" text="Resume" textFill="WHITE" />
+                  <Button fx:id="skipButton1" mnemonicParsing="false" style="-fx-background-color: #D40E52;" text="New Game" textFill="WHITE" />
+               </children>
+            </VBox>
+            <HBox alignment="CENTER" layoutX="78.0" layoutY="247.0" prefHeight="45.0" prefWidth="469.0">
+               <children>
+                  <Circle fill="#0298d3" radius="18.0" scaleZ="0.0" stroke="WHITE">
+                     <effect>
+                        <Reflection />
+                     </effect>
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
+                     <HBox.margin>
+                        <Insets right="50.0" />
+                     </HBox.margin>
+                  </Circle>
+                  <Circle fill="#d40e52" radius="18.0" scaleZ="0.0" stroke="WHITE">
+                     <HBox.margin>
+                        <Insets right="50.0" />
+                     </HBox.margin>
+                     <effect>
+                        <Reflection />
+                     </effect>
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
+                  </Circle>
+                  <Circle fill="#19bc00" radius="18.0" scaleZ="0.0" stroke="WHITE">
+                     <HBox.margin>
+                        <Insets right="50.0" />
+                     </HBox.margin>
+                     <effect>
+                        <Reflection />
+                     </effect>
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
+                  </Circle>
+                  <Circle fill="#fce014" radius="18.0" scaleZ="0.0" stroke="WHITE">
+                     <effect>
+                        <Reflection />
+                     </effect>
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
+                  </Circle>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+   </center>
+   <top>
+      <Label text="Tap Tap Revenge!" textFill="#e4e4e4" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="22.0" />
+         </font>
+         <padding>
+            <Insets bottom="10.0" top="10.0" />
+         </padding>
+      </Label>
+   </top>
+</BorderPane>
