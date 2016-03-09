@@ -17,7 +17,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class TutorialController implements Initializable {
-	private Stage stage;
+	private static Stage stage;
 
 	/* Page 1 Tutorial buttons */
     @FXML
@@ -40,9 +40,7 @@ public class TutorialController implements Initializable {
         // All @FXML variables will have been injected
         nextButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent event) {
-                loadTutorial2();
-            }
+            public void handle(ActionEvent event) { loadTutorial2(); }
         });
 
      // Switch to settings scene (via SettingsController) if skip button pressed
@@ -58,9 +56,31 @@ public class TutorialController implements Initializable {
 	/** Returns the main stage
 	 * @return
 	 */
-	public Stage getCurrentStage(Button button) {
+	public static Stage getCurrentStage(Button button) {
 		stage = (Stage) button.getScene().getWindow();
 		return stage;
+	}
+
+	/** Returns the second tutorial scene
+	 * @return
+	 */
+	protected static void loadTutorial(Button button) {
+		try {
+			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/tutorial_first_screen.fxml"));
+			Stage currStage = getCurrentStage(button);
+			AnchorPane tutorialScreen2 = (AnchorPane) loader.load();
+
+			if (!tutorialScreen2.isVisible()) {
+				tutorialScreen2.setVisible(true);
+			}
+			// Replace with new scene
+			Scene scene = new Scene(tutorialScreen2);
+			currStage.setScene(scene);
+			currStage.show();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/** Returns the second tutorial scene
