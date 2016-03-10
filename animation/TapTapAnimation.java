@@ -1,10 +1,11 @@
-
 import javafx.animation.*;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.effect.Lighting;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
@@ -15,6 +16,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import java.io.*;
+import java.net.URL;
 import java.util.*;
 import javafx.scene.input.KeyEvent;
 public class TapTapAnimation extends Application {
@@ -32,7 +34,9 @@ public class TapTapAnimation extends Application {
     private Circle c4;
     final int initialRadius = 7;
     final int haloRadius = 15;
-    private int delayTime = 3000;
+    private int delayTime = 0;
+    private URL soundURL = this.getClass().getResource("/l.wav");
+    final MediaPlayer mediaPlayer = new MediaPlayer(new Media(soundURL.toExternalForm()));
 
     @Override
     public void start(Stage stage) {
@@ -43,7 +47,8 @@ public class TapTapAnimation extends Application {
         Timeline tl;
         //initialize halo circles
         createHaloCircles();
-        tl = initUI("l.txt");
+        tl = initUI("src/l.txt");
+        System.out.println(tl.getRate());
         for (Circle c : circles) {
             root.getChildren().addAll(c);
         }
@@ -56,12 +61,14 @@ public class TapTapAnimation extends Application {
             @Override
             public void handle(javafx.scene.input.MouseEvent e) {
                 tl.play();
+                mediaPlayer.play();
             }
         });
         scene.setOnMouseExited(new EventHandler<javafx.scene.input.MouseEvent>() {
             @Override
             public void handle(javafx.scene.input.MouseEvent e) {
                 tl.pause();
+                mediaPlayer.pause();
             }
         });
 
@@ -118,7 +125,6 @@ public class TapTapAnimation extends Application {
                 col = beatPair[1].split(",");
                 dict.put(timeSt, col);
             }
-            System.out.println(dict.size());
         } catch (IOException e) {
             System.err.println("Caught IOException: " + e.getMessage());
         }
@@ -130,7 +136,6 @@ public class TapTapAnimation extends Application {
         Map<String, String[]> dict;
         String timeSt;
         String[] col;
-//        Timeline tl = new Timeline();
         Timeline tl = new Timeline(new KeyFrame(Duration.ZERO));
         ObservableList<KeyFrame> keyframes = FXCollections.observableArrayList();
         //create beat data dictionary based on filename
@@ -146,11 +151,14 @@ public class TapTapAnimation extends Application {
             for (String nCol : col) {
                 Circle c = createCircle(nCol);
                 circles.add(c);
-                System.out.print(c.toString());
-                System.out.print(timeStamp);
                 //create a keyframe for each musical note
-                keyframes.add(new KeyFrame(new Duration(delayTime + timeStamp), // set start position at 0
-                        new KeyValue(c.translateYProperty(), 320, Interpolator.EASE_IN)));
+                //TODO: currently hard code the travelTime for each note. travelTime should be smaller that the first timestamp.
+                keyframes.add(new KeyFrame(new Duration(timeStamp-700),
+                        new KeyValue(c.translateYProperty(), -2*initialRadius, Interpolator.EASE_IN)));
+
+                keyframes.add(new KeyFrame(new Duration(delayTime + timeStamp),
+                        new KeyValue(c.translateYProperty(), winLength-initialRadius*2, Interpolator.EASE_IN)));
+                //TODO:figure out how to start the circles at different time so that the speed of the circles are constant.
             }
             it.remove(); // avoids a ConcurrentModificationException
         }
@@ -158,6 +166,7 @@ public class TapTapAnimation extends Application {
         //add all keyframes to timeline
         for (KeyFrame kf : keyframes) {
             tl.getKeyFrames().add(kf);
+            System.out.println("time "+kf.getTime());
         }
 
         return tl;
@@ -169,7 +178,6 @@ public class TapTapAnimation extends Application {
 
     private Circle createCircle(String col) {
         int nColumn = Integer.parseInt(col);
-        System.out.println(nColumn);
         Circle c = new Circle(colPosition[nColumn - 1], 0, initialRadius);
         c.setEffect(new Lighting());
         c.setFill(color[nColumn - 1]);
