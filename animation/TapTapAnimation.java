@@ -24,7 +24,7 @@ public class TapTapAnimation extends Application {
     private ObservableList<Circle> halos = FXCollections.observableArrayList();
     private int[] colPosition = {100, 200, 300, 400};
     private Paint[] color = {Color.rgb(2, 152, 211), Color.rgb(212, 14, 82), Color.rgb(25, 188, 0), Color.rgb(252, 224, 20)};
-    final double opacity = 0.05;
+    final double opacity = 0.2;
     //length of window
     final int winLength = 250;
     private Paint[] haloColor = {Color.rgb(2, 152, 211, opacity), Color.rgb(212, 14, 82, opacity), Color.rgb(25, 188, 0, opacity), Color.rgb(252, 224, 20, opacity)};
@@ -185,10 +185,10 @@ public class TapTapAnimation extends Application {
 
     }
     private void createHaloCircles(){
-        c1 = new Circle(colPosition[0],winLength-initialRadius*2,initialRadius,color[0]);
-        c2 = new Circle(colPosition[1],winLength-initialRadius*2,initialRadius,color[1]);
-        c3 = new Circle(colPosition[2],winLength-initialRadius*2,initialRadius,color[2]);
-        c4 = new Circle(colPosition[3],winLength-initialRadius*2,initialRadius,color[3]);
+        c1 = new Circle(colPosition[0],winLength-initialRadius*2,initialRadius,haloColor[0]);
+        c2 = new Circle(colPosition[1],winLength-initialRadius*2,initialRadius,haloColor[1]);
+        c3 = new Circle(colPosition[2],winLength-initialRadius*2,initialRadius,haloColor[2]);
+        c4 = new Circle(colPosition[3],winLength-initialRadius*2,initialRadius,haloColor[3]);
         halos.add(c1);
         halos.add(c2);
         halos.add(c3);
