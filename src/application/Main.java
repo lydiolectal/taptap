@@ -55,24 +55,14 @@ public class Main extends Application {
 
 		try {
 			// Replace with new AnchorPane scene on current stage
-			AnchorPane screen = (AnchorPane) loader.load();
+			Pane screen = (Pane) loader.load();
 			Scene scene = new Scene(screen);
 			stage.setScene(scene);
 			stage.setTitle("Tap Tap Revolution");
 			stage.show();
 
 		} catch (IOException e) {
-			try {
-				// Replace with new BorderPane scene on current stage
-				BorderPane screen = (BorderPane) loader.load();
-				Scene scene = new Scene(screen);
-				stage.setScene(scene);
-				stage.setTitle("Tap Tap Revolution");
-				stage.show();
-
-			} catch (IOException e2) {
-				e.printStackTrace();
-			}
+			e.printStackTrace();
 		}
 	}
 

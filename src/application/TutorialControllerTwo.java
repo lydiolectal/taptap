@@ -1,6 +1,5 @@
 package application;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -11,56 +10,53 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import application.Main;
 
 /**
- * Created by lydiding on 3/8/16.
+ * Created by lydiading on 3/8/16.
  */
 public class TutorialControllerTwo implements Initializable {
 
     /* Page 2 Tutorial buttons */
     @FXML
-    private Button nextButton2;
+    private Button backButton;
 
     @FXML
-    private Button backButton2;
-
-    private Main main;
+    private Button newGameButton;
 
     @Override	// This method is called by the FXMLLoader when initialization is complete
     public void initialize(URL location, ResourceBundle resources) {
-        assert nextButton2 != null : "fx:id=\"nextButton\" was not injected: check your FXML file 'simple.fxml'.";
 
-        // All @FXML variables will have been injected
-        nextButton2.setOnAction(new EventHandler<ActionEvent>() {
+    	// All @FXML variables will have been injected
+    	assert backButton != null : "fx:id=\"nextButton\" was not injected: check your FXML file 'simple.fxml'.";
+        assert newGameButton != null : "fx:id=\"nextButton\" was not injected: check your FXML file 'simple.fxml'.";
+
+        // Display previous tutorial page
+        backButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                loadNewGame(nextButton2);
+                loadPrevTutorial(backButton);
             }
         });
 
-        // Switch to settings scene (via NewGameController) if skip button pressed
-        backButton2.setOnAction(new EventHandler<ActionEvent>() {
+        // Begin new game screen
+        newGameButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-            	FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/tutorial1.fxml"));
-        		Main.switchScreen(loader, backButton2);
+            	loadNewGame(newGameButton);
             }
-
         });
     }
 
-    public Stage getCurrentStage(Button button) {
-        Stage stage = (Stage) button.getScene().getWindow();
-        return stage;
+    protected void loadPrevTutorial(Button button) {
+        FXMLLoader prev_tut_loader = new FXMLLoader(Main.class.getResource("/view/tutorial_first_screen.fxml"));
+        Main.switchScreen(prev_tut_loader, button);
     }
 
-    private void loadNewGame(Button button) {
-        FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/new_game_screen.fxml"));
-        Main.switchScreen(loader, button);
+    protected void loadNewGame(Button button) {
+        FXMLLoader new_game_loader = new FXMLLoader(Main.class.getResource("/view/new_game_screen.fxml"));
+        Main.switchScreen(new_game_loader, button);
     }
 }
