@@ -31,7 +31,9 @@ import java.util.Iterator;
 public class NewGameController implements Initializable {
 	private Stage stage;
 	private static String song;
-	private static String difficulty_lvl;
+	private static String song_file;
+	private HashMap<String, String> song_list = new HashMap<String, String>();
+
 
 	@FXML
 	private Button readTutorialButton;
@@ -41,9 +43,6 @@ public class NewGameController implements Initializable {
 
     @FXML
     private ComboBox<String> selectSongDropdown;
-
-    @FXML
-    private ComboBox<String> selectDifficultyDropdown;
 
 	@Override	// This method is called by the FXMLLoader when initialization is complete
 	public void initialize(URL location, ResourceBundle resources) {
@@ -55,14 +54,6 @@ public class NewGameController implements Initializable {
             public void changed(ObservableValue ov, String old_song, String new_song) {
                 set_song(new_song);
                 get_song();
-            }
-		});
-
-		selectDifficultyDropdown.valueProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue ov, String old_difficulty_lvl, String new_difficulty_lvl) {
-                set_difficulty(new_difficulty_lvl);
-                get_difficulty();
             }
 		});
 
@@ -91,13 +82,9 @@ public class NewGameController implements Initializable {
 	private void populateDropdownMenus() {
 		// Populate drop down menus
 		selectSongDropdown.getItems().addAll(
-				"Seven Nation Army - The White Stripes",
-				"It's Time - Imagine Dragons");
-
-		selectDifficultyDropdown.getItems().addAll(
-				"Easy",
-				"Medium",
-				"Hard");
+				"Seven Nation Army - The White Stripes (Easy)",
+				"Holy Ghost - Børns (Hard)",
+				"Lange Her - Cro ft. Teesy (Legendary)");
 	}
 
 	// Getters
@@ -106,21 +93,45 @@ public class NewGameController implements Initializable {
 		return song;
 	}
 
-	protected static String get_difficulty() {
-		System.out.println("Current difficulty level:" + difficulty_lvl);
-		return difficulty_lvl;
+	protected static String get_song_file() {
+		System.out.println("Song file: " + song_file);
+		return song_file;
 	}
 
 
 	// Setters
-	protected void set_difficulty(String new_difficulty_lvl) {
-		difficulty_lvl = new_difficulty_lvl;
-	}
-
 	protected void set_song(String new_song) {
 		song = new_song;
 	}
 
+	protected void set_song_file(String new_song) {
+		song_file = song_list.get(get_song());
+	}
+
+	/**
+	 * Creates a hashmap of song files as values
+	 * @return
+	 */
+	protected void createSongMap() {
+		song_list.put("Seven Nation Army - The White Stripes", "seven_nation_army.mp3");
+		song_list.put("Holy Ghost - Børns", "holy_ghost.mp3");
+		song_list.put("Lange Her - Cro ft. Teesy", "lange_her.mp3");
+		printSongMap();
+	}
+
+	/**
+	 * Prints hashmap of song files as values
+	 * @return
+	 */
+	private void printSongMap() {
+		Set set = song_list.entrySet();
+		Iterator iterator = set.iterator();
+		while(iterator.hasNext()) {
+			HashMap.Entry mentry = (HashMap.Entry)iterator.next();
+			System.out.print("Key is: "+ mentry.getKey() + " & Value is: ");
+			System.out.println(mentry.getValue());
+		}
+	}
 
 	/** Display tutorial
 	 * @return

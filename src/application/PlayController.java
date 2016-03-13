@@ -37,8 +37,7 @@ public class PlayController implements Initializable {
             }
         });
 
-		game = new Game(NewGameController.get_difficulty(), NewGameController.get_song());
-		game.createSongMap();
+		game = new Game(NewGameController.get_song());
 	}
 
 	/** Display tutorial
