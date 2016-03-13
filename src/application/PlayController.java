@@ -17,9 +17,11 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import application.Main;
+import application.Game;
 
 public class PlayController implements Initializable {
 	private Stage stage;
+	private Game game;
 
 	@FXML
 	private Button pauseButton;
@@ -34,6 +36,9 @@ public class PlayController implements Initializable {
             	pauseGame(pauseButton);
             }
         });
+
+		game = new Game(NewGameController.get_difficulty(), NewGameController.get_song());
+		game.createSongMap();
 	}
 
 	/** Display tutorial

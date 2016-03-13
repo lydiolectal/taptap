@@ -18,6 +18,7 @@ import javafx.event.EventHandler;
 import java.io.*;
 import java.net.URL;
 import java.util.*;
+import java.math.*;
 import javafx.scene.input.KeyEvent;
 public class TapTapAnimation extends Application {
     private ObservableList<Circle> circles = FXCollections.observableArrayList();
@@ -38,8 +39,8 @@ public class TapTapAnimation extends Application {
     private static  ArrayList<ArrayList<String>> keyPressTimeStamps = new ArrayList<>();
     private static  ArrayList<ArrayList<String>> trackDict = new ArrayList<>(4);
     //change the following to switch songs
-    private URL soundURL = this.getClass().getResource("l.wav");
-    private String beatFile = "/Users/apple/Circle/src/l.txt";
+    private URL soundURL = this.getClass().getResource("l.mp3");
+    private String beatFile = "l.txt";
     final MediaPlayer mediaPlayer = new MediaPlayer(new Media(soundURL.toExternalForm()));
 
     @Override
@@ -94,22 +95,22 @@ public class TapTapAnimation extends Application {
                 if(ke.getCode()== KeyCode.D){
                     c1.setRadius(haloRadius);
                     System.out.println("c1: "+tl.getCurrentTime());
-                    keyPressTimeStamps.get(0).add(tl.getCurrentTime().toString());
+                    keyPressTimeStamps.get(0).add(tl.getCurrentTime().toString().replaceAll(" ms", ""));
                 }
                 if(ke.getCode()== KeyCode.F){
                     c2.setRadius(haloRadius);
                     System.out.println("c2: "+tl.getCurrentTime());
-                    keyPressTimeStamps.get(1).add(tl.getCurrentTime().toString());
+                    keyPressTimeStamps.get(1).add(tl.getCurrentTime().toString().replaceAll(" ms", ""));
                 }
                 if(ke.getCode()== KeyCode.J){
                     c3.setRadius(haloRadius);
                     System.out.println("c3: "+tl.getCurrentTime());
-                    keyPressTimeStamps.get(2).add(tl.getCurrentTime().toString());
+                    keyPressTimeStamps.get(2).add(tl.getCurrentTime().toString().replaceAll(" ms", ""));
                 }
                 if(ke.getCode()== KeyCode.K){
                     c4.setRadius(haloRadius);
                     System.out.println("c4: "+tl.getCurrentTime());
-                    keyPressTimeStamps.get(3).add(tl.getCurrentTime().toString());
+                    keyPressTimeStamps.get(3).add(tl.getCurrentTime().toString().replaceAll(" ms", ""));
                 }
             }
         });
@@ -239,6 +240,40 @@ public class TapTapAnimation extends Application {
         for (int i = 0; i < 4; i++) {
             System.out.println(i + " is " + keyPressTimeStamps.get(i));
         }
+        int final_score = scoreGame();
+        System.out.println("Final Score: " + final_score);
+    }
+
+    private static int scoreGame() {
+        ArrayList<String> user_beats, orig_beats;
+        int score = 0;
+        int smallest_lst_size = 0;
+        int orig_curr_beat, orig_next_beat, user_curr_beat, user_next_beat;
+        // Grab timeStamp list for each of the four keys
+        for (int i = 0; i < 4; i++) {
+
+            System.out.println("Size of trackDict[" + i + "]:" + trackDict.get(i).size());
+            System.out.println("Size of keyPress[" + i + "]:" + keyPressTimeStamps.get(i).size());
+
+            user_beats = keyPressTimeStamps.get(i);
+            orig_beats = trackDict.get(i);
+            // If user pressed the key LESS than actual key beats
+            if (orig_beats.size() >= user_beats.size()) {
+                smallest_lst_size = user_beats.size();
+            } else {
+                smallest_lst_size = orig_beats.size();
+            }
+
+            for (int j = 0; j <= smallest_lst_size - 1; j++) {
+                orig_curr_beat = Math.round(Float.parseFloat(orig_beats.get(j)));
+                user_curr_beat = Math.round(Float.parseFloat(user_beats.get(j)));
+                // Check to make sure user keypress within 400ms of actual correct beat
+                if (Math.abs(user_curr_beat - orig_curr_beat) <= 400) {
+                    score += 10;
+                }
+            }
+        }
+        return score;
     }
 
     private Circle createCircle(String col) {

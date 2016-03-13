@@ -30,8 +30,8 @@ import java.util.Iterator;
 
 public class NewGameController implements Initializable {
 	private Stage stage;
-	private String song;
-	private String difficulty_lvl;
+	private static String song;
+	private static String difficulty_lvl;
 
 	@FXML
 	private Button readTutorialButton;
@@ -101,12 +101,12 @@ public class NewGameController implements Initializable {
 	}
 
 	// Getters
-	protected String get_song() {
+	protected static String get_song() {
 		System.out.println("Current song:"+song);
 		return song;
 	}
 
-	protected String get_difficulty() {
+	protected static String get_difficulty() {
 		System.out.println("Current difficulty level:" + difficulty_lvl);
 		return difficulty_lvl;
 	}
