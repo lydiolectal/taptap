@@ -35,11 +35,20 @@ public class TapTapAnimation extends Application {
     final int initialRadius = 7;
     final int haloRadius = 15;
     private int delayTime = 0;
-    private URL soundURL = this.getClass().getResource("/l.wav");
+    private static  ArrayList<ArrayList<String>> keyPressTimeStamps = new ArrayList<>();
+    private static  ArrayList<ArrayList<String>> trackDict = new ArrayList<>(4);
+    //change the following to switch songs
+    private URL soundURL = this.getClass().getResource("l.wav");
+    private String beatFile = "/Users/apple/Circle/src/l.txt";
     final MediaPlayer mediaPlayer = new MediaPlayer(new Media(soundURL.toExternalForm()));
 
     @Override
     public void start(Stage stage) {
+        //initialize empty 2d arraylist
+        for (int i = 0; i < 4; i++) {
+            ArrayList<String> keyPressElement = new ArrayList<>();
+            keyPressTimeStamps.add(keyPressElement);
+        }
         Pane root = new Pane();
         Scene scene = new Scene(root, 500, winLength);
         stage.setTitle("Random");
@@ -47,8 +56,16 @@ public class TapTapAnimation extends Application {
         Timeline tl;
         //initialize halo circles
         createHaloCircles();
-        tl = initUI("src/l.txt");
-        System.out.println(tl.getRate());
+        tl = initUI(beatFile);
+        //this dict is based on (col, all_the_beat_in_that_col_over_time), can be used to
+        //TODO:SCORING FUNCTION
+        trackDict = createTrackDictionary(beatFile);
+        for (int i = 0; i < 4; i++) {
+            System.out.println(i + " is " + trackDict.get(i));
+        }
+
+
+
         for (Circle c : circles) {
             root.getChildren().addAll(c);
         }
@@ -76,15 +93,23 @@ public class TapTapAnimation extends Application {
             public void handle(KeyEvent ke) {
                 if(ke.getCode()== KeyCode.D){
                     c1.setRadius(haloRadius);
+                    System.out.println("c1: "+tl.getCurrentTime());
+                    keyPressTimeStamps.get(0).add(tl.getCurrentTime().toString());
                 }
                 if(ke.getCode()== KeyCode.F){
                     c2.setRadius(haloRadius);
+                    System.out.println("c2: "+tl.getCurrentTime());
+                    keyPressTimeStamps.get(1).add(tl.getCurrentTime().toString());
                 }
                 if(ke.getCode()== KeyCode.J){
                     c3.setRadius(haloRadius);
+                    System.out.println("c3: "+tl.getCurrentTime());
+                    keyPressTimeStamps.get(2).add(tl.getCurrentTime().toString());
                 }
                 if(ke.getCode()== KeyCode.K){
                     c4.setRadius(haloRadius);
+                    System.out.println("c4: "+tl.getCurrentTime());
+                    keyPressTimeStamps.get(3).add(tl.getCurrentTime().toString());
                 }
             }
         });
@@ -106,6 +131,7 @@ public class TapTapAnimation extends Application {
         });
 
         stage.show();
+
     }
 
     private Map createBeatDictionary(String filename) {
@@ -114,6 +140,7 @@ public class TapTapAnimation extends Application {
         String[] beatPair;
         String timeSt;
         String[] col;
+
         //avoid file not found exception
         try {
             Scanner sc = new Scanner(new FileReader(filename));
@@ -128,18 +155,51 @@ public class TapTapAnimation extends Application {
         } catch (IOException e) {
             System.err.println("Caught IOException: " + e.getMessage());
         }
-
         return dict;
     }
 
-    private Timeline initUI(String songFile) {
+    private ArrayList<ArrayList<String>> createTrackDictionary(String filename) {
+        //initialize empty 2d arraylist
+        for (int i = 0; i < 4; i++) {
+            ArrayList<String> dictElement = new ArrayList<>();
+            trackDict.add(dictElement);
+        }
+
+        String line;
+        String[] beatPair;
+        String timeSt;
+        String[] col;
+        //avoid file not found exception
+        try {
+            Scanner sc = new Scanner(new FileReader(filename));
+            while (sc.hasNextLine()) {
+                line = sc.nextLine();
+                line = line.replaceAll("\\s+", "");
+                beatPair = line.split("\\|");
+                timeSt = beatPair[0];
+                col = beatPair[1].split(",");
+
+                for(String nCol : col){
+                    trackDict.get(Integer.parseInt(nCol)-1).add(timeSt);
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Caught IOException: " + e.getMessage());
+        }
+
+        return trackDict;
+    }
+
+    private Timeline initUI(String fileName) {
         Map<String, String[]> dict;
         String timeSt;
         String[] col;
         Timeline tl = new Timeline(new KeyFrame(Duration.ZERO));
         ObservableList<KeyFrame> keyframes = FXCollections.observableArrayList();
         //create beat data dictionary based on filename
-        dict = createBeatDictionary(songFile);
+
+        dict = createBeatDictionary(fileName);
+
         //iterate though dictionary for beat time and column numbers
         Iterator<Map.Entry<String, String[]>> it = dict.entrySet().iterator();
         while (it.hasNext()) {
@@ -153,7 +213,7 @@ public class TapTapAnimation extends Application {
                 circles.add(c);
                 //create a keyframe for each musical note
                 //TODO: currently hard code the travelTime for each note. travelTime should be smaller that the first timestamp.
-                keyframes.add(new KeyFrame(new Duration(timeStamp-700),
+                keyframes.add(new KeyFrame(new Duration(timeStamp-700+delayTime),
                         new KeyValue(c.translateYProperty(), -2*initialRadius, Interpolator.EASE_IN)));
 
                 keyframes.add(new KeyFrame(new Duration(delayTime + timeStamp),
@@ -166,7 +226,6 @@ public class TapTapAnimation extends Application {
         //add all keyframes to timeline
         for (KeyFrame kf : keyframes) {
             tl.getKeyFrames().add(kf);
-            System.out.println("time "+kf.getTime());
         }
 
         return tl;
@@ -174,6 +233,12 @@ public class TapTapAnimation extends Application {
 
     public static void main(String[] args) {
         launch(args);
+        for (int i = 0; i < 4; i++) {
+            System.out.println(i + " is " + trackDict.get(i));
+        }
+        for (int i = 0; i < 4; i++) {
+            System.out.println(i + " is " + keyPressTimeStamps.get(i));
+        }
     }
 
     private Circle createCircle(String col) {
@@ -184,6 +249,7 @@ public class TapTapAnimation extends Application {
         return c;
 
     }
+
     private void createHaloCircles(){
         c1 = new Circle(colPosition[0],winLength-initialRadius*2,initialRadius,haloColor[0]);
         c2 = new Circle(colPosition[1],winLength-initialRadius*2,initialRadius,haloColor[1]);
