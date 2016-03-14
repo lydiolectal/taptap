@@ -1,7 +1,5 @@
 package application;
 
-import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Set;
@@ -13,28 +11,19 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.stage.Stage;
-import javafx.stage.Window;
 import application.Main;
 import java.util.HashMap;
 import java.util.Iterator;
 
 public class NewGameController implements Initializable {
-	private Stage stage;
 	private static String song;
 	private static String song_file;
 	private static HashMap<String, String> song_list = new HashMap<String, String>();
 	private static HashMap<String, String> song_file_list = new HashMap<String, String>();
 
+	/* Inject new game FXML buttons */
 	@FXML
 	private Button readTutorialButton;
 
@@ -44,7 +33,11 @@ public class NewGameController implements Initializable {
     @FXML
     private ComboBox<String> selectSongDropdown;
 
-	@Override	// This method is called by the FXMLLoader when initialization is complete
+    /** This method is called by the FXMLLoader on scene startup
+	 * and sets the actions of the dropdown and two buttons in the pause screen controller.
+	 * @return
+	 */
+	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		populateDropdownMenus();
 		createSongMap();
@@ -89,22 +82,32 @@ public class NewGameController implements Initializable {
 				"Lange Her - Cro ft. Teesy (Legendary)");
 	}
 
-	// Getters
+	/** Getter
+	 * @return String song
+     */
 	protected static String get_song() {
 		System.out.println("Current song:"+song);
 		return song;
 	}
 
+	/** Getter
+	 * @return String song file
+     */
 	protected static String get_song_file() {
 		System.out.println("Song file: " + song_file);
 		return song_file;
 	}
 
-	// Setters
+	/** Setter
+	 * @param new_song
+     */
 	protected void set_song(String new_song) {
 		song = new_song;
 	}
 
+	/** Setter
+	 * @param new_song
+     */
 	protected void set_song_file(String new_song) {
 		song_file = song_list.get(get_song());
 	}
@@ -142,7 +145,7 @@ public class NewGameController implements Initializable {
 		}
 	}
 
-	/** Display tutorial
+	/** Switches from new game screen to the first tutorial screen
 	 * @return
 	 */
 	public void loadTutorial(Button readTutorialButton) {
@@ -150,20 +153,11 @@ public class NewGameController implements Initializable {
 		Main.switchScreen(tut_first_loader,readTutorialButton);
 	}
 
-	/** Display new game screen
+	/** Switches from new game screen to the play screen
 	 * @return
 	 */
 	public void loadNewGame(Button button) {
 		FXMLLoader new_game_loader = new FXMLLoader(Main.class.getResource("/view/play_screen.fxml"));
 		Main.switchScreen(new_game_loader, button);
 	}
-
-	/** Returns the main stage
-	 * @return
-	 */
-	public Stage getCurrentStage(Button button) {
-		stage = (Stage) button.getScene().getWindow();
-		return stage;
-	}
-
 }

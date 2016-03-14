@@ -1,21 +1,13 @@
 package application;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 
 public class TutorialController implements Initializable {
 
@@ -26,7 +18,11 @@ public class TutorialController implements Initializable {
     @FXML
     private Button skipButton;
 
-	@Override	// This method is called by the FXMLLoader when initialization is complete
+    /** This method is called by the FXMLLoader on startup
+	 * and sets the actions of the two buttons in the first tutorial controller
+	 * @return
+	 */
+	@Override
 	public void initialize(URL location, ResourceBundle resources) {
         // All @FXML variables will have been injected
 		assert nextButton != null : "fx:id=\"nextButton\" was not injected: check your FXML file 'tutorial_first_screen.fxml'.";
@@ -52,7 +48,7 @@ public class TutorialController implements Initializable {
 
 	}
 
-	/** Display the second tutorial scene
+	/** Switches from the first tutorial screen to the second
 	 * @return
 	 */
 	protected void loadTutorialTwo(Button button) {
@@ -61,7 +57,7 @@ public class TutorialController implements Initializable {
 
 	}
 
-	/** Display the new game screen
+	/** Switches from the first tutorial screen to the new game screen
 	 * @return
 	 */
 	protected void loadNewGame(Button button) {

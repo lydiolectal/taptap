@@ -1,39 +1,27 @@
 package application;
 
 import javafx.animation.*;
-import javafx.application.Application;
-import javafx.scene.Scene;
 import javafx.scene.effect.Lighting;
-import javafx.scene.input.KeyCode;
-import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import java.io.*;
-import java.net.URL;
 import java.util.*;
-import javafx.scene.input.KeyEvent;
 
 public class Game {
 	private String song;
 	private String song_file;
-	private HashMap<String, String> song_list = new HashMap<String, String>();
-	private HashMap<String, String> song_file_list = new HashMap<String, String>();
 
 	// From TapTapAnimation vars
 	private static  ArrayList<ArrayList<String>> keyPressTimeStamps = new ArrayList<>();
     private static  ArrayList<ArrayList<String>> trackDict = new ArrayList<>(4);
     private String beatFile;
 
-    // TODO: CHANGE TO MATCH PLAY FXML FILE
     // Window settings
     final int winLength = 400;
     private int[] colPosition = {199, 281, 361, 442};
@@ -144,6 +132,7 @@ public class Game {
                     trackDict.get(Integer.parseInt(nCol)-1).add(timeSt);
                 }
             }
+            sc.close();
         } catch (IOException e) {
             System.err.println("Caught IOException: " + e.getMessage());
         }

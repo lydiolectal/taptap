@@ -1,12 +1,8 @@
 package application;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.ResourceBundle;
-import java.util.Set;
 
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -14,18 +10,12 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
-import javafx.stage.Window;
 import application.Main;
 import application.Game;
 
@@ -34,9 +24,6 @@ import javafx.scene.input.MouseEvent;
 
 public class PlayController implements Initializable {
 	public static ArrayList<ArrayList<String>> get_keyPressTimeStamps;
-	private Stage stage;
-	private Scene scene;
-	private HashMap<String, Scene> scenes = new HashMap<String, Scene>();
 	private Game game;
 	private Timeline tl;
 
@@ -44,6 +31,7 @@ public class PlayController implements Initializable {
     final int haloRadius = 25;
 	private static ArrayList<ArrayList<String>> keyPressTimeStamps;
 
+	/* Inject Play FXML buttons */
 	@FXML
 	private Button quitButton;
 
@@ -56,10 +44,10 @@ public class PlayController implements Initializable {
 	@FXML
 	private AnchorPane gameAnchorPane;
 
+	/* Inject action events from FXML panes */
 	@FXML
 	public void handleOnMouseEntered(MouseEvent event) {
-      // Display circles on screen
-
+		// Display circles on screen
 		game.playSong();
 		tl.play();
 	}
@@ -114,7 +102,11 @@ public class PlayController implements Initializable {
 
 	}
 
-	@Override	// This method is called by the FXMLLoader when initialization is complete
+	/** This method is called by the FXMLLoader on startup
+	 * and sets the actions of the pause button in the play screen controller
+	 * @return
+	 */
+	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		assert quitButton != null : "fx:id=\"pauseButton\" was not injected: check your FXML file 'play_screen.fxml'.";
 
@@ -125,24 +117,29 @@ public class PlayController implements Initializable {
             }
         });
 
+		// Begin game
 		game = new Game(NewGameController.get_song());
 		game.initSongData();
 		game.initAudio();
 		tl = game.initUI();
+
+		// Add circle animations to scene pane
 		for (Circle c : game.getCircles()) {
 			playScreenBorderPane.getChildren().addAll(c);
-//			gameAnchorPane.getChildren().addAll(c);
 		}
 		for(Circle h: game.getHalos()){
-			//playScreenBorderPane.getChildren().addAll(h);
 			gameAnchorPane.getChildren().addAll(h);
 		}
-
-		//int final_score = Game.scoreGame();
-		//System.out.println("Final score:" + final_score);
 	}
 
-	/** Pause game
+	/** Returns the ArrayList of key time stamps user pressed during game
+	 * @return keyPressTimeStamps
+	 */
+	public static ArrayList<ArrayList<String>> get_keyPressTimeStamps() {
+		return keyPressTimeStamps;
+	}
+
+	/** Pause game when mouse moves outside game window
 	 * @return
 	 */
 	public void pauseGame() {
@@ -150,7 +147,7 @@ public class PlayController implements Initializable {
         game.pauseSong();
 	}
 
-	/** Pause game from Pause button
+	/** Quit game
 	 * @return
 	 */
 	public void quitGame(Button pauseButton) {
@@ -158,24 +155,11 @@ public class PlayController implements Initializable {
 		Main.switchScreen(pause_loader, pauseButton);
 	}
 
-	/** Resume game
+	/** Resume game when mouse moves inside game window
 	 * @return
 	 */
 	public void playGame() {
 		tl.play();
         game.playSong();
 	}
-
-	/** Returns the main stage
-	 * @return
-	 */
-	public Stage getCurrentStage(Button button) {
-		stage = (Stage) button.getScene().getWindow();
-		return stage;
-	}
-
-	public static ArrayList<ArrayList<String>> get_keyPressTimeStamps() {
-		return keyPressTimeStamps;
-	}
-
 }
