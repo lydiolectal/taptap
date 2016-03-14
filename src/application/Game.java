@@ -69,8 +69,8 @@ public class Game {
         ArrayList<ArrayList<String>> dict = new ArrayList<>();
         Timeline tl = new Timeline(new KeyFrame(Duration.ZERO));
         ObservableList<KeyFrame> keyframes = FXCollections.observableArrayList();
-        //create beat data dictionary based on filename
 
+        // Create beat data arrayList based on filename
         dict = createTrackList();
 
         //iterate though dictionary for beat time and column numbers
@@ -80,7 +80,7 @@ public class Game {
                 Circle c = createCircle(i);
                 circles.add(c);
                 System.out.println("timeStamp:" + (timeStamp - 900 + delayTime));
-                //create a keyframe for each musical note
+                // Create keyFrame for each musical note
                 //TODO: currently hard code the travelTime for each note. travelTime should be smaller that the first timestamp.
                 keyframes.add(new KeyFrame(new Duration(timeStamp-900+delayTime),
                         new KeyValue(c.translateYProperty(), 0, Interpolator.EASE_IN)));
@@ -94,7 +94,7 @@ public class Game {
             }
         }
 
-        //add all keyframes to timeline
+        // Add all keyFrames to timeline
         for (KeyFrame kf : keyframes) {
             tl.getKeyFrames().add(kf);
         }
@@ -103,13 +103,13 @@ public class Game {
     }
 
 	/* Creates an arrayList of beats for each of the four different keys by
-	 * loading and parsing through a song textfile.
+	 * loading and parsing through a song text file.
 	 *
 	 * @return ArrayList<ArrayList<String>>
 	 */
 	private ArrayList<ArrayList<String>> createTrackList() {
 		set_beat_file();
-        //initialize empty 2d arraylist
+        // Initialize empty 2d arrayList
         for (int i = 0; i < 4; i++) {
             ArrayList<String> dictElement = new ArrayList<>();
             trackDict.add(dictElement);
@@ -119,7 +119,8 @@ public class Game {
         String[] beatPair;
         String timeSt;
         String[] col;
-        //avoid file not found exception
+
+        // Avoid file not found exception
         try {
             Scanner sc = new Scanner(new FileReader(beatFile));
             while (sc.hasNextLine()) {
@@ -193,7 +194,6 @@ public class Game {
 	protected void initAudio() {
 		Media sound = new Media(new File(song_file).toURI().toString());
 		mediaPlayer = new MediaPlayer(sound);
-		System.out.println("Is media player null" + mediaPlayer.toString());
 	}
 
 	protected void playSong() {
@@ -209,13 +209,14 @@ public class Game {
         int score = 0;
         int smallest_lst_size = 0;
         int orig_curr_beat, user_curr_beat;
+
         // Grab timeStamp list for each of the four keys
         for (int i = 0; i < 4; i++) {
 
             System.out.println("Size of trackDict[" + i + "]:" + trackDict.get(i).size());
             System.out.println("Size of keyPress[" + i + "]:" + keyPressTimeStamps.get(i).size());
 
-            user_beats = PlayController.get_keyPressTimeStamps().get(i);
+            user_beats = keyPressTimeStamps.get(i);
             orig_beats = trackDict.get(i);
             // If user pressed the key LESS than actual key beats
             if (orig_beats.size() >= user_beats.size()) {
@@ -226,7 +227,7 @@ public class Game {
 
             for (int j = 0; j <= smallest_lst_size - 1; j++) {
                 orig_curr_beat = Math.round(Float.parseFloat(orig_beats.get(j)));
-                user_curr_beat = Math.round(Float.parseFloat(user_beats.get(j)));
+                user_curr_beat = Math.round(Float.parseFloat(user_beats.get(j).replace(" ms", "")));
                 // Check to make sure user keypress within 400ms of actual correct beat
                 if (Math.abs(user_curr_beat - orig_curr_beat) <= 400) {
                     score += 10;

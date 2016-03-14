@@ -24,6 +24,7 @@ public class TutorialController implements Initializable {
 	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+
         // All @FXML variables will have been injected
 		assert nextButton != null : "fx:id=\"nextButton\" was not injected: check your FXML file 'tutorial_first_screen.fxml'.";
 		assert skipButton != null : "fx:id=\"skipButton\" was not injected: check your FXML file 'tutorial_first_screen.fxml'.";
@@ -34,7 +35,6 @@ public class TutorialController implements Initializable {
             public void handle(ActionEvent event) {
             	loadNewGame(skipButton);
             }
-
         });
 
         // Continue to second tutorial page
@@ -44,8 +44,6 @@ public class TutorialController implements Initializable {
             	loadTutorialTwo(nextButton);
             }
         });
-
-
 	}
 
 	/** Switches from the first tutorial screen to the second
@@ -54,7 +52,6 @@ public class TutorialController implements Initializable {
 	protected void loadTutorialTwo(Button button) {
 		FXMLLoader tut_second_loader = new FXMLLoader(Main.class.getResource("/view/tutorial_second_screen.fxml"));
 		Main.switchScreen(tut_second_loader, button);
-
 	}
 
 	/** Switches from the first tutorial screen to the new game screen

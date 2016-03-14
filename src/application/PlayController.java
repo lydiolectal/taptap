@@ -29,7 +29,6 @@ public class PlayController implements Initializable {
 
 	final int initialRadius = 15;
     final int haloRadius = 25;
-	private static ArrayList<ArrayList<String>> keyPressTimeStamps;
 
 	/* Inject Play FXML buttons */
 	@FXML
@@ -81,8 +80,8 @@ public class PlayController implements Initializable {
             System.out.println("c4: "+tl.getCurrentTime());
             game.updateKeyPressTimeStamp(3, tl.getCurrentTime());
         }
-		//int score = game.scoreGame();
-		//scoreLabel.setText(String.valueOf(score));
+		int score = game.scoreGame();
+		scoreLabel.setText("Score: " + String.valueOf(score) + " points");
 	}
 
 	@FXML
@@ -130,13 +129,6 @@ public class PlayController implements Initializable {
 		for(Circle h: game.getHalos()){
 			gameAnchorPane.getChildren().addAll(h);
 		}
-	}
-
-	/** Returns the ArrayList of key time stamps user pressed during game
-	 * @return keyPressTimeStamps
-	 */
-	public static ArrayList<ArrayList<String>> get_keyPressTimeStamps() {
-		return keyPressTimeStamps;
 	}
 
 	/** Pause game when mouse moves outside game window
