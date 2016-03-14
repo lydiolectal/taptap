@@ -29,15 +29,7 @@ public class PauseController implements Initializable {
 
 	@Override	// This method is called by the FXMLLoader when initialization is complete
 	public void initialize(URL location, ResourceBundle resources) {
-		assert resumeGameButton != null : "fx:id=\"resumeGameButton\" was not injected: check your FXML file 'pause_screen.fxml'.";
 		assert restartGameButton != null : "fx:id=\"resumeGameButton\" was not injected: check your FXML file 'pause_screen.fxml'.";
-
-		resumeGameButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-            	resumeGame(resumeGameButton);
-            }
-        });
 
 		restartGameButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override

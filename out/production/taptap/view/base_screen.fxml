@@ -1,0 +1,14 @@
+<!--This is just the stack pane that everything else builds off of. It does nothing except exist so that the others can layer on top-->
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.StackPane?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+	<children>
+		<fx:include source="play_screen.fxml" fx:id="play_screen"/>
+		<fx:include source="tutorial_first_screen.fxml" fx:id="tutorial_first_screen" />
+		<fx:include source="tutorial_second_screen.fxml" fx:id="tutorial_second_screen"  />
+		<fx:include source="new_game_screen.fxml" fx:id="new_game_screen" />
+	</children>
+</StackPane>

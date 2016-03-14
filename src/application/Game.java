@@ -35,8 +35,8 @@ public class Game {
 
     // TODO: CHANGE TO MATCH PLAY FXML FILE
     // Window settings
-    final int winLength = 250;
-    private int[] colPosition = {100, 200, 300, 400};
+    final int winLength = 400;
+    private int[] colPosition = {199, 281, 361, 442};
 
     // Circle settings
     private Circle c1;
@@ -45,8 +45,8 @@ public class Game {
     private Circle c4;
     private ObservableList<Circle> circles = FXCollections.observableArrayList();
     private ObservableList<Circle> halos = FXCollections.observableArrayList();
-    final double opacity = 0.2;
-    final int initialRadius = 7;
+    final double opacity = 0.18;
+    final int initialRadius = 15;
     private Paint[] color = {Color.rgb(2, 152, 211), Color.rgb(212, 14, 82), Color.rgb(25, 188, 0), Color.rgb(252, 224, 20)};
     private Paint[] haloColor = {Color.rgb(2, 152, 211, opacity), Color.rgb(212, 14, 82, opacity), Color.rgb(25, 188, 0, opacity), Color.rgb(252, 224, 20, opacity)};
 
@@ -93,13 +93,13 @@ public class Game {
                 circles.add(c);
                 //create a keyframe for each musical note
                 //TODO: currently hard code the travelTime for each note. travelTime should be smaller that the first timestamp.
-                keyframes.add(new KeyFrame(new Duration(timeStamp-700+delayTime),
-                        new KeyValue(c.translateYProperty(), -2*initialRadius, Interpolator.EASE_IN)));
+                keyframes.add(new KeyFrame(new Duration(timeStamp-900+delayTime),
+                        new KeyValue(c.translateYProperty(), 0, Interpolator.EASE_IN)));
 
                 keyframes.add(new KeyFrame(new Duration(delayTime + timeStamp),
                         new KeyValue(c.translateYProperty(), winLength-initialRadius*2, Interpolator.EASE_IN)));
 
-                keyframes.add(new KeyFrame(new Duration(timeStamp+100), new KeyValue(c.translateYProperty(),winLength+initialRadius,Interpolator.LINEAR)));
+                keyframes.add(new KeyFrame(new Duration(timeStamp+150), new KeyValue(c.translateYProperty(),winLength+initialRadius,Interpolator.LINEAR)));
                 //TODO:figure out how to start the circles at different time so that the speed of the circles are constant.
 
             }
@@ -172,10 +172,10 @@ public class Game {
 	}
 
 	private void createHaloCircles(){
-        c1 = new Circle(colPosition[0],winLength-initialRadius*2,initialRadius,haloColor[0]);
-        c2 = new Circle(colPosition[1],winLength-initialRadius*2,initialRadius,haloColor[1]);
-        c3 = new Circle(colPosition[2],winLength-initialRadius*2,initialRadius,haloColor[2]);
-        c4 = new Circle(colPosition[3],winLength-initialRadius*2,initialRadius,haloColor[3]);
+        c1 = new Circle(colPosition[0],winLength-initialRadius*5.7,initialRadius,haloColor[0]);
+        c2 = new Circle(colPosition[1],winLength-initialRadius*5.7,initialRadius,haloColor[1]);
+        c3 = new Circle(colPosition[2],winLength-initialRadius*5.7,initialRadius,haloColor[2]);
+        c4 = new Circle(colPosition[3],winLength-initialRadius*5.7,initialRadius,haloColor[3]);
         halos.add(c1);
         halos.add(c2);
         halos.add(c3);
@@ -186,12 +186,16 @@ public class Game {
 		switch(index) {
 		case(0):
 			c1.setRadius(radius);
+            break;
 		case(1):
 			c2.setRadius(radius);
+            break;
 		case(2):
 			c3.setRadius(radius);
+            break;
 		case(3):
 			c4.setRadius(radius);
+            break;
 		}
 	}
 

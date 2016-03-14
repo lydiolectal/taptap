@@ -38,31 +38,25 @@ public class PlayController implements Initializable {
 	private Game game;
 	private Timeline tl;
 
-	final int initialRadius = 7;
-    final int haloRadius = 15;
+	final int initialRadius = 15;
+    final int haloRadius = 25;
 	private static ArrayList<ArrayList<String>> keyPressTimeStamps;
 
 	@FXML
-	private Button pauseButton;
-
-	@FXML
-	private ProgressBar progressBar;
+	private Button quitButton;
 
 	@FXML
 	private BorderPane playScreenBorderPane;
 
 	@FXML
+	private AnchorPane gameAnchorPane;
+
+	@FXML
 	public void handleOnMouseEntered(MouseEvent event) {
       // Display circles on screen
-	  for (Circle c : game.getCircles()) {
-          playScreenBorderPane.getChildren().addAll(c);
-      }
-      for(Circle c: game.getHalos()){
-          playScreenBorderPane.getChildren().addAll(c);
-      }
 
-      tl.play();
-      game.playSong();
+		game.playSong();
+		tl.play();
 	}
 
 	@FXML
@@ -73,7 +67,7 @@ public class PlayController implements Initializable {
 
 	@FXML
 	public void handleOnKeyPressed(KeyEvent ke) {
-
+		System.out.println(ke.toString());
 		if(ke.getCode()== KeyCode.D){
             game.setHaloRadius(0, haloRadius);
             System.out.println("c1: "+tl.getCurrentTime());
@@ -102,31 +96,40 @@ public class PlayController implements Initializable {
         	game.setHaloRadius(0, initialRadius);
         }
         if(ke.getCode()== KeyCode.F){
-        	game.setHaloRadius(0, initialRadius);
+        	game.setHaloRadius(1, initialRadius);
         }
         if(ke.getCode()== KeyCode.J){
-        	game.setHaloRadius(0, initialRadius);
+        	game.setHaloRadius(2, initialRadius);
         }
         if(ke.getCode()== KeyCode.K){
-        	game.setHaloRadius(0, initialRadius);
+        	game.setHaloRadius(3, initialRadius);
         }
 	}
 
 	@Override	// This method is called by the FXMLLoader when initialization is complete
 	public void initialize(URL location, ResourceBundle resources) {
-		assert pauseButton != null : "fx:id=\"pauseButton\" was not injected: check your FXML file 'play_screen.fxml'.";
+		assert quitButton != null : "fx:id=\"pauseButton\" was not injected: check your FXML file 'play_screen.fxml'.";
 
-		pauseButton.setOnAction(new EventHandler<ActionEvent>() {
+		quitButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-            	pauseButtonGame(pauseButton);
+            	quitGame(quitButton);
             }
         });
 
 		game = new Game(NewGameController.get_song());
 		game.initSongData();
-		tl = game.initUI();
 		game.initAudio();
+		tl = game.initUI();
+		for (Circle c : game.getCircles()) {
+			playScreenBorderPane.getChildren().addAll(c);
+//			gameAnchorPane.getChildren().addAll(c);
+		}
+		for(Circle h: game.getHalos()){
+			//playScreenBorderPane.getChildren().addAll(h);
+			gameAnchorPane.getChildren().addAll(h);
+		}
+
 		//int final_score = Game.scoreGame();
 		//System.out.println("Final score:" + final_score);
 	}
@@ -142,7 +145,7 @@ public class PlayController implements Initializable {
 	/** Pause game from Pause button
 	 * @return
 	 */
-	public void pauseButtonGame(Button pauseButton) {
+	public void quitGame(Button pauseButton) {
 		FXMLLoader pause_loader = new FXMLLoader(Main.class.getResource("/view/pause_screen.fxml"));
 		Main.switchScreen(pause_loader, pauseButton);
 	}
@@ -161,10 +164,6 @@ public class PlayController implements Initializable {
 	public Stage getCurrentStage(Button button) {
 		stage = (Stage) button.getScene().getWindow();
 		return stage;
-	}
-
-	public void updateProgressBar(long progress){
-		progressBar.setProgress(progress);
 	}
 
 	public static ArrayList<ArrayList<String>> get_keyPressTimeStamps() {
