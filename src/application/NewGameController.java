@@ -81,6 +81,7 @@ public class NewGameController implements Initializable {
 				"It's Time - Imagine Dragons (Medium)",
 				"Holy Ghost - Børns (Hard)",
 				"Lange Her - Cro ft. Teesy (Legendary)");
+		selectSongDropdown.setPromptText("Seven Nation Army - The White Stripes (Easy)");
 	}
 
 	/** Getter

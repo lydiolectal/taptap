@@ -15,8 +15,7 @@ public class PauseController implements Initializable {
 
 	/* Inject FXML buttons */
 	@FXML
-	private Button resumeGameButton;
-
+	private Button quitAndReadTutorialButton;
 	@FXML
 	private Button restartGameButton;
 
@@ -26,7 +25,15 @@ public class PauseController implements Initializable {
 	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		assert quitAndReadTutorialButton != null : "fx:id=\"resumeGameButton\" was not injected: check your FXML file 'pause_screen.fxml'.";
 		assert restartGameButton != null : "fx:id=\"resumeGameButton\" was not injected: check your FXML file 'pause_screen.fxml'.";
+
+		quitAndReadTutorialButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+            	loadTutorial(quitAndReadTutorialButton);
+            }
+        });
 
 		restartGameButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -34,6 +41,14 @@ public class PauseController implements Initializable {
             	restartGame(restartGameButton);
             }
         });
+	}
+
+	/** Switches from new game screen to the first tutorial screen
+	 * @return
+	 */
+	public void loadTutorial(Button quitAndReadTutorialButton) {
+		FXMLLoader tut_first_loader2 = new FXMLLoader(Main.class.getResource("/view/tutorial_first_screen.fxml"));
+		Main.switchScreen(tut_first_loader2,quitAndReadTutorialButton);
 	}
 
 	/** Switches from pause screen to new game screen

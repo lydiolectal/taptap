@@ -13,6 +13,11 @@ import javafx.collections.ObservableList;
 import java.io.*;
 import java.util.*;
 
+/* Game.java initiates a new Game object, which begins the circle animation,
+ * initiates audio playback, and scores user's performance as they play.
+ *
+ */
+
 public class Game {
 	private String song;
 	private String song_file;
@@ -44,12 +49,16 @@ public class Game {
     // Media settings
     protected MediaPlayer mediaPlayer;
 
-
+    /* Contructor */
 	public Game(String song_title) {
 		song = song_title;
 		song_file = NewGameController.get_song_file();
 	}
 
+	/* Create arrayList of song beats based on chosen song and
+	 * initialize empty user's keypress list.
+	 * @return
+	 */
 	protected void initSongData() {
 		// Initialize empty user_keypress file
         for (int i = 0; i < 4; i++) {
@@ -64,6 +73,9 @@ public class Game {
         }
 	}
 
+	/* Create circle and halo animation and begin animation timeline.
+	 * @return timeline
+	 */
 	protected Timeline initUI() {
 		createHaloCircles();
         ArrayList<ArrayList<String>> dict = new ArrayList<>();
@@ -73,24 +85,24 @@ public class Game {
         // Create beat data arrayList based on filename
         dict = createTrackList();
 
-        //iterate though dictionary for beat time and column numbers
+        // Iterate though dictionary for beat time and column numbers
         for (int i = 0; i < 4; i++) {
             for(String ts: dict.get(i)){
                 int timeStamp = Integer.parseInt(ts);
                 Circle c = createCircle(i);
                 circles.add(c);
                 System.out.println("timeStamp:" + (timeStamp - 900 + delayTime));
-                // Create keyFrame for each musical note
-                //TODO: currently hard code the travelTime for each note. travelTime should be smaller that the first timestamp.
+
+                // Create keyFrame for each musical note (circles) at top of screen
                 keyframes.add(new KeyFrame(new Duration(timeStamp-900+delayTime),
                         new KeyValue(c.translateYProperty(), 0, Interpolator.EASE_IN)));
 
+                // Create keyFrame for circles at bottom of screen
                 keyframes.add(new KeyFrame(new Duration(delayTime + timeStamp),
                         new KeyValue(c.translateYProperty(), winLength-initialRadius*2, Interpolator.EASE_IN)));
 
+                // Create keyFrame for falling circle animation
                 keyframes.add(new KeyFrame(new Duration(timeStamp+150), new KeyValue(c.translateYProperty(),winLength+initialRadius,Interpolator.LINEAR)));
-                //TODO:figure out how to start the circles at different time so that the speed of the circles are constant.
-
             }
         }
 
@@ -102,14 +114,15 @@ public class Game {
         return tl;
     }
 
-	/* Creates an arrayList of beats for each of the four different keys by
+	/* Creates an arrayList of track beats for each of the four different keys by
 	 * loading and parsing through a song text file.
 	 *
-	 * @return ArrayList<ArrayList<String>>
+	 * @return ArrayList<ArrayList<String>> track list
 	 */
 	private ArrayList<ArrayList<String>> createTrackList() {
 		set_beat_file();
-        // Initialize empty 2d arrayList
+
+        // Initialize empty 2D arrayList containing original song beats
         for (int i = 0; i < 4; i++) {
             ArrayList<String> dictElement = new ArrayList<>();
             trackDict.add(dictElement);
@@ -120,6 +133,7 @@ public class Game {
         String timeSt;
         String[] col;
 
+        // Parse through beat file and split timeStamps with respective key presses into arrayList
         // Avoid file not found exception
         try {
             Scanner sc = new Scanner(new FileReader(beatFile));
@@ -142,6 +156,8 @@ public class Game {
         return trackDict;
     }
 
+	/* Set beat file by replacing .mp3 extension with .txt to get beat file of chosen song
+	 */
 	private void set_beat_file() {
 		String[] addr = song_file.split("\\.");
 		beatFile = addr[0]+".txt";
