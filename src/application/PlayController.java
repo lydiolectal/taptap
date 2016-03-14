@@ -16,12 +16,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import application.Main;
@@ -44,6 +46,9 @@ public class PlayController implements Initializable {
 
 	@FXML
 	private Button quitButton;
+
+	@FXML
+	private Text scoreLabel;
 
 	@FXML
 	private BorderPane playScreenBorderPane;
@@ -88,6 +93,8 @@ public class PlayController implements Initializable {
             System.out.println("c4: "+tl.getCurrentTime());
             game.updateKeyPressTimeStamp(3, tl.getCurrentTime());
         }
+		//int score = game.scoreGame();
+		//scoreLabel.setText(String.valueOf(score));
 	}
 
 	@FXML
@@ -104,6 +111,7 @@ public class PlayController implements Initializable {
         if(ke.getCode()== KeyCode.K){
         	game.setHaloRadius(3, initialRadius);
         }
+
 	}
 
 	@Override	// This method is called by the FXMLLoader when initialization is complete
