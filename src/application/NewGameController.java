@@ -39,10 +39,15 @@ public class NewGameController implements Initializable {
 	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		populateDropdownMenus();
+		populateDropdownMenu();
 		createSongMap();
 
-		// Dropdown listeners
+		// Default to easiest song if user does not pick song
+		set_song("It's Time - Imagine Dragons (Medium)");
+		set_song_file(get_song());
+		get_song_file();
+
+		// Dropdown menu listener
 		selectSongDropdown.valueProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue ov, String old_song, String new_song) {
@@ -74,14 +79,14 @@ public class NewGameController implements Initializable {
 	/** Display song and difficulty options in dropdown menus
 	 * @return
 	 */
-	private void populateDropdownMenus() {
-		// Populate drop down menus
+	private void populateDropdownMenu() {
+		// Populate drop down menu
+		selectSongDropdown.setPromptText("Seven Nation Army - The White Stripes (Easy)");
 		selectSongDropdown.getItems().addAll(
 				"Seven Nation Army - The White Stripes (Easy)",
 				"It's Time - Imagine Dragons (Medium)",
 				"Holy Ghost - Børns (Hard)",
 				"Lange Her - Cro ft. Teesy (Legendary)");
-		selectSongDropdown.setPromptText("Seven Nation Army - The White Stripes (Easy)");
 	}
 
 	/** Getter

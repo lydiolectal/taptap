@@ -19,10 +19,11 @@ import java.util.*;
  */
 
 public class Game {
+	// Song info
 	private String song;
 	private String song_file;
 
-	// From TapTapAnimation vars
+	// Beat lists
 	private static  ArrayList<ArrayList<String>> keyPressTimeStamps = new ArrayList<>();
     private static  ArrayList<ArrayList<String>> trackDict = new ArrayList<>(4);
     private String beatFile;
@@ -49,7 +50,7 @@ public class Game {
     // Media settings
     protected MediaPlayer mediaPlayer;
 
-    /* Contructor */
+    // Constructor
 	public Game(String song_title) {
 		song = song_title;
 		song_file = NewGameController.get_song_file();
@@ -157,6 +158,7 @@ public class Game {
     }
 
 	/* Set beat file by replacing .mp3 extension with .txt to get beat file of chosen song
+	 * @return
 	 */
 	private void set_beat_file() {
 		String[] addr = song_file.split("\\.");
@@ -164,6 +166,9 @@ public class Game {
 		System.out.println("beatFile=" + beatFile);
 	}
 
+	/* Create new Circle object for each column
+	 * @return Circle
+	 */
 	private Circle createCircle(int col) {
         Circle c = new Circle(colPosition[col], 0, initialRadius);
         c.setEffect(new Lighting());
@@ -171,6 +176,7 @@ public class Game {
         return c;
     }
 
+	/* Getters */
 	protected ObservableList<Circle> getCircles() {
 	    return circles;
 	}
@@ -179,6 +185,9 @@ public class Game {
 	    return halos;
 	}
 
+	/* Create halo effect when user presses key corresponding to a circle
+	 * @return
+	 */
 	private void createHaloCircles(){
         c1 = new Circle(colPosition[0],winLength-initialRadius*5.7,initialRadius,haloColor[0]);
         c2 = new Circle(colPosition[1],winLength-initialRadius*5.7,initialRadius,haloColor[1]);
@@ -190,6 +199,9 @@ public class Game {
         halos.add(c4);
     }
 
+	/* Set halo radius effect around circle based on column index
+	 * @return
+	 */
 	protected void setHaloRadius(int index, int radius) {
 		switch(index) {
 		case(0):
@@ -207,19 +219,32 @@ public class Game {
 		}
 	}
 
+	/* Load song file and initiate new Media object with chosen song queued
+	 * @return
+	 */
 	protected void initAudio() {
 		Media sound = new Media(new File(song_file).toURI().toString());
 		mediaPlayer = new MediaPlayer(sound);
 	}
 
+	/* Play/resume audio
+	 * @return
+	 */
 	protected void playSong() {
 		mediaPlayer.play();
 	}
 
+	/* Pause audio
+	 * @return
+	 */
 	protected void pauseSong() {
 		mediaPlayer.pause();
 	}
 
+	/* Return current score as user plays game by comparing user's key presses with original key beats.
+	 * Add 10 points for each key pressed that is within 400 ms of actual correct beat
+	 * @returns score
+	 */
 	protected static int scoreGame() {
         ArrayList<String> user_beats, orig_beats;
         int score = 0;
@@ -253,6 +278,9 @@ public class Game {
         return score;
     }
 
+	/* Add new user key press to user's current keyPressTimeStamp list
+	 * @return
+	 */
 	public void updateKeyPressTimeStamp(int i, Duration currentTime) {
 		keyPressTimeStamps.get(i).add(currentTime.toString());
 	}
