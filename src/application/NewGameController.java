@@ -78,6 +78,7 @@ public class NewGameController implements Initializable {
 		// Populate drop down menus
 		selectSongDropdown.getItems().addAll(
 				"Seven Nation Army - The White Stripes (Easy)",
+				"It's Time - Imagine Dragons (Medium)",
 				"Holy Ghost - Børns (Hard)",
 				"Lange Her - Cro ft. Teesy (Legendary)");
 	}
@@ -118,8 +119,9 @@ public class NewGameController implements Initializable {
 	 */
 	protected void createSongMap() {
 		song_list.put(selectSongDropdown.getItems().get(0), "seven_nation_army.mp3");
-		song_list.put(selectSongDropdown.getItems().get(1), "holy_ghost.mp3");
-		song_list.put(selectSongDropdown.getItems().get(2), "lange_her.mp3");
+		song_list.put(selectSongDropdown.getItems().get(1), "its_time.mp3");
+		song_list.put(selectSongDropdown.getItems().get(2), "holy_ghost.mp3");
+		song_list.put(selectSongDropdown.getItems().get(3), "lange_her.mp3");
 		printSongMap();
 	}
 

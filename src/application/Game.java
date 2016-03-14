@@ -79,6 +79,7 @@ public class Game {
                 int timeStamp = Integer.parseInt(ts);
                 Circle c = createCircle(i);
                 circles.add(c);
+                System.out.println("timeStamp:" + (timeStamp - 900 + delayTime));
                 //create a keyframe for each musical note
                 //TODO: currently hard code the travelTime for each note. travelTime should be smaller that the first timestamp.
                 keyframes.add(new KeyFrame(new Duration(timeStamp-900+delayTime),
@@ -143,6 +144,7 @@ public class Game {
 	private void set_beat_file() {
 		String[] addr = song_file.split("\\.");
 		beatFile = addr[0]+".txt";
+		System.out.println("beatFile=" + beatFile);
 	}
 
 	private Circle createCircle(int col) {
