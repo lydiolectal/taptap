@@ -35,7 +35,6 @@ public class NewGameController implements Initializable {
 	private static HashMap<String, String> song_list = new HashMap<String, String>();
 	private static HashMap<String, String> song_file_list = new HashMap<String, String>();
 
-
 	@FXML
 	private Button readTutorialButton;
 

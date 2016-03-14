@@ -54,7 +54,7 @@ public class Game {
     private int delayTime = 0;
 
     // Media settings
-    private MediaPlayer mediaPlayer;
+    protected MediaPlayer mediaPlayer;
 
 
 	public Game(String song_title) {
@@ -163,6 +163,14 @@ public class Game {
         return c;
     }
 
+	protected ObservableList<Circle> getCircles() {
+	    return circles;
+	}
+
+	protected ObservableList<Circle> getHalos() {
+	    return halos;
+	}
+
 	private void createHaloCircles(){
         c1 = new Circle(colPosition[0],winLength-initialRadius*2,initialRadius,haloColor[0]);
         c2 = new Circle(colPosition[1],winLength-initialRadius*2,initialRadius,haloColor[1]);
@@ -190,6 +198,7 @@ public class Game {
 	protected void initAudio() {
 		Media sound = new Media(new File(song_file).toURI().toString());
 		mediaPlayer = new MediaPlayer(sound);
+		System.out.println("Is media player null" + mediaPlayer.toString());
 	}
 
 	protected void playSong() {
@@ -204,7 +213,7 @@ public class Game {
         ArrayList<String> user_beats, orig_beats;
         int score = 0;
         int smallest_lst_size = 0;
-        int orig_curr_beat, orig_next_beat, user_curr_beat, user_next_beat;
+        int orig_curr_beat, user_curr_beat;
         // Grab timeStamp list for each of the four keys
         for (int i = 0; i < 4; i++) {
 
@@ -231,4 +240,8 @@ public class Game {
         }
         return score;
     }
+
+	public void updateKeyPressTimeStamp(int i, Duration currentTime) {
+		keyPressTimeStamps.get(i).add(currentTime.toString());
+	}
 }

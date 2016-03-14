@@ -21,6 +21,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import application.Main;
@@ -48,7 +49,18 @@ public class PlayController implements Initializable {
 	private ProgressBar progressBar;
 
 	@FXML
+	private BorderPane playScreenBorderPane;
+
+	@FXML
 	public void handleOnMouseEntered(MouseEvent event) {
+      // Display circles on screen
+	  for (Circle c : game.getCircles()) {
+          playScreenBorderPane.getChildren().addAll(c);
+      }
+      for(Circle c: game.getHalos()){
+          playScreenBorderPane.getChildren().addAll(c);
+      }
+
       tl.play();
       game.playSong();
 	}
@@ -61,25 +73,26 @@ public class PlayController implements Initializable {
 
 	@FXML
 	public void handleOnKeyPressed(KeyEvent ke) {
+
 		if(ke.getCode()== KeyCode.D){
             game.setHaloRadius(0, haloRadius);
             System.out.println("c1: "+tl.getCurrentTime());
-            keyPressTimeStamps.get(0).add(tl.getCurrentTime().toString());
+            game.updateKeyPressTimeStamp(0, tl.getCurrentTime());
         }
         if(ke.getCode()== KeyCode.F){
         	game.setHaloRadius(1, haloRadius);
             System.out.println("c2: "+tl.getCurrentTime());
-            keyPressTimeStamps.get(1).add(tl.getCurrentTime().toString());
+            game.updateKeyPressTimeStamp(1, tl.getCurrentTime());
         }
         if(ke.getCode()== KeyCode.J){
         	game.setHaloRadius(2, haloRadius);
             System.out.println("c3: "+tl.getCurrentTime());
-            keyPressTimeStamps.get(2).add(tl.getCurrentTime().toString());
+            game.updateKeyPressTimeStamp(2, tl.getCurrentTime());
         }
         if(ke.getCode()== KeyCode.K){
         	game.setHaloRadius(3, haloRadius);
             System.out.println("c4: "+tl.getCurrentTime());
-            keyPressTimeStamps.get(3).add(tl.getCurrentTime().toString());
+            game.updateKeyPressTimeStamp(3, tl.getCurrentTime());
         }
 	}
 
@@ -113,68 +126,9 @@ public class PlayController implements Initializable {
 		game = new Game(NewGameController.get_song());
 		game.initSongData();
 		tl = game.initUI();
-		// startGame() : start both audio and animation
-		// scoreGame()
-
-//		scene = Main.screens.get("GameScreen");
-//		scene.setOnMouseEntered(new EventHandler<javafx.scene.input.MouseEvent>() {
-//            @Override
-//            public void handle(javafx.scene.input.MouseEvent e) {
-//                tl.play();
-//                game.playSong();
-//            }
-//        });
-//
-//        scene.setOnMouseExited(new EventHandler<javafx.scene.input.MouseEvent>() {
-//            @Override
-//            public void handle(javafx.scene.input.MouseEvent e) {
-//                tl.pause();
-//                game.pauseSong();
-//            }
-//        });
-
-//        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-//            public void handle(KeyEvent ke) {
-//                if(ke.getCode()== KeyCode.D){
-//                    game.setHaloRadius(0, haloRadius);
-//                    System.out.println("c1: "+tl.getCurrentTime());
-//                    keyPressTimeStamps.get(0).add(tl.getCurrentTime().toString());
-//                }
-//                if(ke.getCode()== KeyCode.F){
-//                	game.setHaloRadius(1, haloRadius);
-//                    System.out.println("c2: "+tl.getCurrentTime());
-//                    keyPressTimeStamps.get(1).add(tl.getCurrentTime().toString());
-//                }
-//                if(ke.getCode()== KeyCode.J){
-//                	game.setHaloRadius(2, haloRadius);
-//                    System.out.println("c3: "+tl.getCurrentTime());
-//                    keyPressTimeStamps.get(2).add(tl.getCurrentTime().toString());
-//                }
-//                if(ke.getCode()== KeyCode.K){
-//                	game.setHaloRadius(3, haloRadius);
-//                    System.out.println("c4: "+tl.getCurrentTime());
-//                    keyPressTimeStamps.get(3).add(tl.getCurrentTime().toString());
-//                }
-//            }
-//        });
-//        scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
-//            public void handle(KeyEvent ke) {
-//                if(ke.getCode()== KeyCode.D){
-//                	game.setHaloRadius(0, initialRadius);
-//                }
-//                if(ke.getCode()== KeyCode.F){
-//                	game.setHaloRadius(0, initialRadius);
-//                }
-//                if(ke.getCode()== KeyCode.J){
-//                	game.setHaloRadius(0, initialRadius);
-//                }
-//                if(ke.getCode()== KeyCode.K){
-//                	game.setHaloRadius(0, initialRadius);
-//                }
-//            }
-//        });
-
-		System.out.println("Got here.");
+		game.initAudio();
+		//int final_score = Game.scoreGame();
+		//System.out.println("Final score:" + final_score);
 	}
 
 	/** Pause game
