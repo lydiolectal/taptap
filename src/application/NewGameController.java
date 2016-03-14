@@ -168,38 +168,3 @@ public class NewGameController implements Initializable {
 	}
 
 }
-
-
-
-
-/***first way to do it***/
-//Game game = new Game(int difficulty_level, Str song_title);
-//main.getGame(game);
-/***second way to do it***/
-//main.getSongInfo(int difficulty_level, Str song_title);
-//AnchorPane settingsScreen = (AnchorPane) loader.load();
-//
-//if (!settingsScreen.isVisible()) {
-//	settingsScreen.setVisible(true);
-//}
-//// Replace with new scene
-//Scene scene = new Scene(settingsScreen);
-//Stage currStage = getCurrentStage(button);
-//currStage.setScene(scene);
-//currStage.show();
-
-
-
-/* OLD CODE FOR LOADING CONTROLLER */
-// Listen for button clicks
-//assert backButton != null : "fx:id=\"backButton\" was not injected: check your FXML file 'new_game_screen.fxml'.";
-
-//// Switch to tutorial scene (via TutorialControllerOne)
-//backButton.setOnAction(new EventHandler<ActionEvent>() {
-//@Override
-//public void handle(ActionEvent event) {
-//	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/tutorial2.fxml"));
-//	TutorialControllerOne controller = fxmlLoader.<TutorialControllerOne>getController();
-//	controller.loadTutorial2();
-//}
-//});

@@ -2,7 +2,10 @@ package application;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 import javafx.application.Application;
 import javafx.fxml.FXML;
@@ -23,6 +26,7 @@ import javafx.scene.Node;
 public class Main extends Application {
 
 	private static Stage primaryStage;
+	public static HashMap<String, Scene> screens = new HashMap<String, Scene>();
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -57,6 +61,18 @@ public class Main extends Application {
 			// Replace with new AnchorPane scene on current stage
 			Pane screen = (Pane) loader.load();
 			Scene scene = new Scene(screen);
+
+			System.out.println("BEFORE");
+			screens.put("GameScreen", scene);
+			Set set = screens.entrySet();
+			Iterator iterator = set.iterator();
+			while(iterator.hasNext()) {
+				HashMap.Entry mentry = (HashMap.Entry)iterator.next();
+				System.out.print("SCENE: "+ mentry.getKey() + " & VALUE is: ");
+				System.out.println(mentry.getValue());
+			}
+			System.out.println("AFTER");
+
 			stage.setScene(scene);
 			stage.setTitle("Tap Tap Revolution");
 			stage.show();
@@ -65,7 +81,6 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
-
 
 	public static void main(String[] args) {
 		launch(args);
