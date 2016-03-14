@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -25,7 +26,7 @@ public class PlayController implements Initializable {
 
 	@FXML
 	private Button pauseButton;
-	
+
 	@FXML
 	private ProgressBar progressBar;
 
@@ -41,6 +42,11 @@ public class PlayController implements Initializable {
         });
 
 		game = new Game(NewGameController.get_song());
+		game.initSongData();
+		// initUI()
+		// startGame() : start both audio and animation
+		// scoreGame()
+		System.out.println("Got here.");
 	}
 
 	/** Display tutorial
@@ -57,13 +63,9 @@ public class PlayController implements Initializable {
 	public Stage getCurrentStage(Button button) {
 		stage = (Stage) button.getScene().getWindow();
 		return stage;
-	}	
-	
-	public void updateProgressBar(long progress){
-		progressBar.setProgress(progress);
 	}
-	
-		public void updateProgressBar(long progress){
+
+	public void updateProgressBar(long progress){
 		progressBar.setProgress(progress);
 	}
 

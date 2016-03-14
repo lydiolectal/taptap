@@ -2,11 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="076019f6-baae-40a9-9daf-310e18460416" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/g.mp3" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/l.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TapTapAnimation.java" afterPath="$PROJECT_DIR$/TapTapAnimation.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../src/application/Game.java" afterPath="$PROJECT_DIR$/../src/application/Game.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../src/application/NewGameController.java" afterPath="$PROJECT_DIR$/../src/application/NewGameController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../src/application/PlayController.java" afterPath="$PROJECT_DIR$/../src/application/PlayController.java" />
     </list>
     <ignored path="animation.iws" />
@@ -32,8 +27,8 @@
       <file leaf-file-name="TapTapAnimation.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/TapTapAnimation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.08695652">
-              <caret line="246" column="36" selection-start-line="246" selection-start-column="36" selection-end-line="246" selection-end-column="36" />
+            <state vertical-scroll-proportion="1.4369565">
+              <caret line="249" column="34" selection-start-line="249" selection-start-column="34" selection-end-line="249" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -59,7 +54,6 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1" />
     <option name="y" value="23" />
     <option name="width" value="986" />
     <option name="height" value="797" />
@@ -89,6 +83,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -110,8 +106,6 @@
         </subPane>
       </pane>
       <pane id="Scratches" />
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -406,8 +400,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="23" width="986" height="797" extended-state="0" />
-    <editor active="false" />
+    <frame x="0" y="23" width="986" height="797" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -457,8 +451,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/TapTapAnimation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.08695652">
-          <caret line="246" column="36" selection-start-line="246" selection-start-column="36" selection-end-line="246" selection-end-column="36" />
+        <state vertical-scroll-proportion="1.4369565">
+          <caret line="249" column="34" selection-start-line="249" selection-start-column="34" selection-end-line="249" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

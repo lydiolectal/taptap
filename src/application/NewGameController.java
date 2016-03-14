@@ -32,7 +32,8 @@ public class NewGameController implements Initializable {
 	private Stage stage;
 	private static String song;
 	private static String song_file;
-	private HashMap<String, String> song_list = new HashMap<String, String>();
+	private static HashMap<String, String> song_list = new HashMap<String, String>();
+	private static HashMap<String, String> song_file_list = new HashMap<String, String>();
 
 
 	@FXML
@@ -47,13 +48,15 @@ public class NewGameController implements Initializable {
 	@Override	// This method is called by the FXMLLoader when initialization is complete
 	public void initialize(URL location, ResourceBundle resources) {
 		populateDropdownMenus();
+		createSongMap();
 
 		// Dropdown listeners
 		selectSongDropdown.valueProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue ov, String old_song, String new_song) {
                 set_song(new_song);
-                get_song();
+                set_song_file(new_song);
+                get_song_file();
             }
 		});
 
@@ -98,7 +101,6 @@ public class NewGameController implements Initializable {
 		return song_file;
 	}
 
-
 	// Setters
 	protected void set_song(String new_song) {
 		song = new_song;
@@ -113,9 +115,9 @@ public class NewGameController implements Initializable {
 	 * @return
 	 */
 	protected void createSongMap() {
-		song_list.put("Seven Nation Army - The White Stripes", "seven_nation_army.mp3");
-		song_list.put("Holy Ghost - Børns", "holy_ghost.mp3");
-		song_list.put("Lange Her - Cro ft. Teesy", "lange_her.mp3");
+		song_list.put(selectSongDropdown.getItems().get(0), "seven_nation_army.mp3");
+		song_list.put(selectSongDropdown.getItems().get(1), "holy_ghost.mp3");
+		song_list.put(selectSongDropdown.getItems().get(2), "lange_her.mp3");
 		printSongMap();
 	}
 
@@ -128,8 +130,16 @@ public class NewGameController implements Initializable {
 		Iterator iterator = set.iterator();
 		while(iterator.hasNext()) {
 			HashMap.Entry mentry = (HashMap.Entry)iterator.next();
-			System.out.print("Key is: "+ mentry.getKey() + " & Value is: ");
+			System.out.print("Song Key is: "+ mentry.getKey() + " & Value is: ");
 			System.out.println(mentry.getValue());
+		}
+
+		Set set2 = song_file_list.entrySet();
+		Iterator iterator2 = set2.iterator();
+		while(iterator2.hasNext()) {
+			HashMap.Entry mentry2 = (HashMap.Entry)iterator2.next();
+			System.out.print("Song file key is: "+ mentry2.getKey() + " & Value is: ");
+			System.out.println(mentry2.getValue());
 		}
 	}
 
