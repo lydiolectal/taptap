@@ -28,6 +28,12 @@ TO PLAY: The keys 'd,' 'f,' 'j,' and 'k' correspond to columns 1, 2, 3, 4 from l
 After starting the game, a song will start playing, and dots corresponding to beats will float downwards. Each time the player presses the correct key at the correct time (within 400 milliseconds before or after the actual dot), 10 points will be add to the total score.
 
 
+-- Scoring --
+
+You earn 10 points for every correct beat you press.
+
+Be careful of pressing a key more than you should - you won't be docked points, but you also won't earn any points for the same amount of times you pressed that key!
+
 --To run the program--
 
 Click "Main.java" to run the program.

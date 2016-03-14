@@ -123,12 +123,14 @@ public class PlayController implements Initializable {
 		tl = game.initUI();
 
 		// Add circle animations to scene pane
-		for (Circle c : game.getCircles()) {
+		for(Circle c : game.getCircles()) {
 			playScreenBorderPane.getChildren().addAll(c);
 		}
 		for(Circle h: game.getHalos()){
 			gameAnchorPane.getChildren().addAll(h);
 		}
+
+		tl.setOnFinished(event -> quitGame(quitButton));
 	}
 
 	/** Pause game when mouse moves outside game window
@@ -142,9 +144,9 @@ public class PlayController implements Initializable {
 	/** Quit game
 	 * @return
 	 */
-	public void quitGame(Button pauseButton) {
+	public void quitGame(Button quitButton) {
 		FXMLLoader pause_loader = new FXMLLoader(Main.class.getResource("/view/pause_screen.fxml"));
-		Main.switchScreen(pause_loader, pauseButton);
+		Main.switchScreen(pause_loader, quitButton);
 	}
 
 	/** Resume game when mouse moves inside game window

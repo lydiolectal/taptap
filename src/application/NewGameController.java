@@ -43,9 +43,8 @@ public class NewGameController implements Initializable {
 		createSongMap();
 
 		// Default to easiest song if user does not pick song
-		set_song("It's Time - Imagine Dragons (Medium)");
+		set_song("Seven Nation Army - The White Stripes (Easy)");
 		set_song_file(get_song());
-		get_song_file();
 
 		// Dropdown menu listener
 		selectSongDropdown.valueProperty().addListener(new ChangeListener<String>() {
@@ -53,7 +52,6 @@ public class NewGameController implements Initializable {
             public void changed(ObservableValue ov, String old_song, String new_song) {
                 set_song(new_song);
                 set_song_file(new_song);
-                get_song_file();
             }
 		});
 
@@ -93,7 +91,6 @@ public class NewGameController implements Initializable {
 	 * @return String song
      */
 	protected static String get_song() {
-		System.out.println("Current song:"+song);
 		return song;
 	}
 
@@ -101,7 +98,6 @@ public class NewGameController implements Initializable {
 	 * @return String song file
      */
 	protected static String get_song_file() {
-		System.out.println("Song file: " + song_file);
 		return song_file;
 	}
 
@@ -128,7 +124,7 @@ public class NewGameController implements Initializable {
 		song_list.put(selectSongDropdown.getItems().get(1), "its_time.mp3");
 		song_list.put(selectSongDropdown.getItems().get(2), "holy_ghost.mp3");
 		song_list.put(selectSongDropdown.getItems().get(3), "lange_her.mp3");
-		printSongMap();
+		//printSongMap();
 	}
 
 	/**
@@ -165,6 +161,7 @@ public class NewGameController implements Initializable {
 	 * @return
 	 */
 	public void loadNewGame(Button button) {
+		System.out.println("Loading game...");
 		FXMLLoader new_game_loader = new FXMLLoader(Main.class.getResource("/view/play_screen.fxml"));
 		Main.switchScreen(new_game_loader, button);
 	}

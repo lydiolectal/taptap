@@ -69,9 +69,6 @@ public class Game {
 
         // Load song beat array
         trackDict = createTrackList();
-        for (int i = 0; i < 4; i++) {
-            System.out.println(i + " is " + trackDict.get(i));
-        }
 	}
 
 	/* Create circle and halo animation and begin animation timeline.
@@ -92,7 +89,6 @@ public class Game {
                 int timeStamp = Integer.parseInt(ts);
                 Circle c = createCircle(i);
                 circles.add(c);
-                System.out.println("timeStamp:" + (timeStamp - 900 + delayTime));
 
                 // Create keyFrame for each musical note (circles) at top of screen
                 keyframes.add(new KeyFrame(new Duration(timeStamp-900+delayTime),
@@ -163,7 +159,6 @@ public class Game {
 	private void set_beat_file() {
 		String[] addr = song_file.split("\\.");
 		beatFile = addr[0]+".txt";
-		System.out.println("beatFile=" + beatFile);
 	}
 
 	/* Create new Circle object for each column
@@ -241,6 +236,7 @@ public class Game {
 		mediaPlayer.pause();
 	}
 
+
 	/* Return current score as user plays game by comparing user's key presses with original key beats.
 	 * Add 10 points for each key pressed that is within 400 ms of actual correct beat
 	 * @returns score
@@ -253,10 +249,6 @@ public class Game {
 
         // Grab timeStamp list for each of the four keys
         for (int i = 0; i < 4; i++) {
-
-            System.out.println("Size of trackDict[" + i + "]:" + trackDict.get(i).size());
-            System.out.println("Size of keyPress[" + i + "]:" + keyPressTimeStamps.get(i).size());
-
             user_beats = keyPressTimeStamps.get(i);
             orig_beats = trackDict.get(i);
             // If user pressed the key LESS than actual key beats
@@ -284,4 +276,6 @@ public class Game {
 	public void updateKeyPressTimeStamp(int i, Duration currentTime) {
 		keyPressTimeStamps.get(i).add(currentTime.toString());
 	}
+
+
 }
