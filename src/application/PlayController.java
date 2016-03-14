@@ -25,6 +25,9 @@ public class PlayController implements Initializable {
 
 	@FXML
 	private Button pauseButton;
+	
+	@FXML
+	private ProgressBar progressBar;
 
 	@Override	// This method is called by the FXMLLoader when initialization is complete
 	public void initialize(URL location, ResourceBundle resources) {
@@ -54,6 +57,14 @@ public class PlayController implements Initializable {
 	public Stage getCurrentStage(Button button) {
 		stage = (Stage) button.getScene().getWindow();
 		return stage;
+	}	
+	
+	public void updateProgressBar(long progress){
+		progressBar.setProgress(progress);
+	}
+	
+		public void updateProgressBar(long progress){
+		progressBar.setProgress(progress);
 	}
 
 }

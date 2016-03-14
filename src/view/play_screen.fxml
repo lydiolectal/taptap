@@ -32,8 +32,8 @@
    <bottom>
       <VBox prefHeight="40.0" prefWidth="574.0" BorderPane.alignment="CENTER">
          <children>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Progress: 26%" textAlignment="CENTER" wrappingWidth="140.68310546875" />
-            <ProgressBar prefHeight="16.0" prefWidth="140.0" progress="0.34">
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Progress" textAlignment="CENTER" wrappingWidth="140.68310546875" />
+            <ProgressBar fx:id="progressBar" prefHeight="16.0" prefWidth="140.0" progress="0">
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
